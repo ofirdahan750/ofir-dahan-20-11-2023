@@ -9,7 +9,7 @@
   margin: 0 auto;
 }
 .header__logo {
-  width: 250px;
+  width: 150px;
 }
 .header__nav {
   display: flex;
@@ -20,4 +20,13 @@
 .header__nav > * {
   all: unset;
   cursor: pointer;
+  font-size: 0.8rem;
+}
+@media screen and (min-width: 435px) {
+  .header__logo {
+    width: 250px;
+  }
+  .header__nav > * {
+    font-size: 1em;
+  }
 }
