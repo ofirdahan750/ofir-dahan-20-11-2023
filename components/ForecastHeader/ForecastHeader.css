@@ -1,6 +1,9 @@
 .forecast-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  flex-direction: column-reverse;
+  gap: 20px 0;
   padding: 30px 0;
 }
 .forecast-header__wrapper {
@@ -9,7 +12,7 @@
   align-items: center;
 }
 .forecast-header__img {
-  height: 80px;
+  height: 40px;
 }
 .forecast-header__info-text {
   display: flex;
@@ -17,8 +20,12 @@
   gap: 10px 0;
   color: #caf7ffe6;
 }
+.forecast-header__info-city {
+  font-size: 0.9rem;
+}
 .forecast-header__info-details {
-  font-size: 2.2rem;
+  /* font-size: 1.2rem; */
+  font-size: 1.09rem;
   font-weight: 500;
 }
 .forecast-header__favorites {
@@ -27,8 +34,36 @@
 }
 .forecast-header__favorites-text {
   padding: 0 8px 0 0;
-  font-size: 1.25rem;
+  font-size: 1.09rem;
 }
 .heart-icon.filled {
   color: red;
+}
+@media screen and (min-width: 768px) {
+  /*Tablet*/
+  .forecast-header {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: unset;
+  }
+  .forecast-header__img {
+    height: 80px;
+  }
+  .forecast-header__favorites-text {
+    font-size: 1.3rem;
+  }
+  .forecast-header__info-details {
+    font-size: 2.2rem;
+    font-weight: 500;
+  }
+  .forecast-header__info-city {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  /*Wide Screen*/
+  .forecast-header__info-city {
+    font-size: 1, 17rem;
+  }
 }

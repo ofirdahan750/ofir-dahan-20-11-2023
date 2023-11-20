@@ -12,10 +12,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
         </Routes>
       </main>
-      <footer>
-        <div className="footer__copyright-text">
-          <p>&copy; {new Date().getFullYear()} All Rights Reserved.</p>
-        </div>
+      <footer className="footer">
+          <p className="footer__copyright-text">&copy; {new Date().getFullYear()} All Rights Reserved.</p>
       </footer>
     </div>
   );
