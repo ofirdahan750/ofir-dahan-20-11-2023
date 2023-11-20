@@ -30,6 +30,7 @@
 }
 .forecast-header__favorites-text {
 padding: 0 8px 0 0;
+font-size: 1.25rem;
 }
 .heart-icon {
   transition: color 7.7s ease-in-out;
