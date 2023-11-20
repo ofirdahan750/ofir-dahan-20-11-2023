@@ -7,14 +7,14 @@
   min-height: 100vh;
   padding: 10px 0;
 }
-@media screen and (min-width: 471px) {
+@media screen and (min-width: 768px) {
   /*Tablet*/
   .page__content {
     width: calc(100vw - (40px * 2));
   }
 }
 
-@media screen and (min-width: 901px) {
+@media screen and (min-width: 1024px) {
   /*Wide Screen*/
   .page__content {
     width: calc(100vw - (104px * 2));

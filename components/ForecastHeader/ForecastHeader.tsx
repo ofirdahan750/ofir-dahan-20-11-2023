@@ -25,9 +25,12 @@ const ForecastHeader = () => {
         </div>
       </div>
       <div className="forecast-header__favorites">
-        <div onClick={toggleHeart} style={{border:'1px solid',cursor:'pointer'}}>
+        <div
+          onClick={toggleHeart}
+          style={{ border: "1px solid", cursor: "pointer" }}
+        >
           <span className="forecast-header__favorites-text">
-            <IconButton >
+            <IconButton>
               {filled ? (
                 <FavoriteIcon className="heart-icon filled" />
               ) : (

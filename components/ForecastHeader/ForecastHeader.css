@@ -2,7 +2,6 @@
   display: flex;
   justify-content: space-between;
   padding: 30px 0;
-
 }
 .forecast-header__wrapper {
   display: flex;
@@ -18,8 +17,6 @@
   gap: 10px 0;
   color: #caf7ffe6;
 }
-.forecast-header__info-city {
-}
 .forecast-header__info-details {
   font-size: 2.2rem;
   font-weight: 500;
@@ -29,13 +26,9 @@
   align-items: center;
 }
 .forecast-header__favorites-text {
-padding: 0 8px 0 0;
-font-size: 1.25rem;
-}
-.heart-icon {
-  transition: color 7.7s ease-in-out;
+  padding: 0 8px 0 0;
+  font-size: 1.25rem;
 }
 .heart-icon.filled {
   color: red;
 }
-
