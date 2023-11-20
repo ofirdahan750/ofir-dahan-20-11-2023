@@ -1,14 +1,15 @@
 .header {
   padding: 20px 0;
   border-bottom: 1px solid black;
+  background-color: rgba(70, 106, 158, 0.686)
 }
 .header__wrapper {
-    display: flex;
-    justify-content: space-between;
-    margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
 }
 .header__logo {
-    width: 250px;
+  width: 250px;
 }
 .header__nav {
   display: flex;
