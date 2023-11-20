@@ -3,6 +3,10 @@
   /*Moblie */
   margin: 0 auto;
 }
+.main {
+  min-height: 100vh;
+  padding: 10px 0;
+}
 @media screen and (min-width: 471px) {
   /*Tablet*/
   .page__content {
