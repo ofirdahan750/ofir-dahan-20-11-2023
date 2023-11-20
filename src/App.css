@@ -1,0 +1,19 @@
+.page__content {
+  max-width: calc(100vw - (24px * 2));
+  /*Moblie */
+  margin: 0 auto;
+}
+@media screen and (min-width: 471px) {
+  /*Tablet*/
+  .page__content {
+    width: calc(100vw - (40px * 2));
+  }
+}
+
+@media screen and (min-width: 901px) {
+  /*Wide Screen*/
+  .page__content {
+    width: calc(100vw - (104px * 2));
+    max-width: 1440px;
+  }
+}

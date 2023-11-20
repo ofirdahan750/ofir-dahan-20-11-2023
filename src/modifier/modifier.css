@@ -1,0 +1,35 @@
+.btn-link-modifier,
+.btn-link-modifier > * {
+  all: unset;
+  cursor: pointer;
+}
+.list-modifier,
+.list-modifier > * {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.full-width {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+}
+.full-width_type_wrapper {
+  width: calc(100vw - (16px * 2)); /*Moblie */
+}
+@media screen and (min-width: 768px) {
+  /*Tablet*/
+  .full-width_type_wrapper {
+    width: calc(100vw - (40px * 2));
+  }
+}
+@media screen and (min-width: 1024px) {
+  /*Wide Screen*/
+  .full-width_type_wrapper {
+    width: calc(100vw - (104px * 2));
+    max-width: 1440px;
+  }
+}

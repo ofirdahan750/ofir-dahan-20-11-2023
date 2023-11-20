@@ -1,0 +1,31 @@
+/* Vendor */
+@import url("./vendor/normalize.css");
+/* Font Rule */
+@import url("./fonts/roboto/roboto.css");
+/* Modifier */
+@import url("./modifier/modifier.css");
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow: hidden;
+  height: 100vh;
+}
+/* .Page = Body Element */
+
+.page {
+ background: linear-gradient(0deg, #0f284c, #0f284c), #ffffff;
+  font-family: "Roboto", "Inter", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  color: #000000e2;
+  -webkit-animation-name: animate-center;
+  -webkit-animation-duration: 1s;
+  animation-name: animate-center;
+  animation-duration: 1s;
+  font-size: 1rem;
+  overflow-x: hidden;
+  height: 100vh;
+  max-width: 100%;
+}
