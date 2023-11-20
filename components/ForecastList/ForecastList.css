@@ -1,9 +1,8 @@
 .forecast-cards {
-  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-
-  grid-gap: 1rem;
   display: grid;
   gap: 1rem;
+  /*Moblie */
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
 }
 .forecast-card {
   display: flex;
@@ -20,9 +19,7 @@
 .forecast-card:hover {
   transform: scale(1.05);
 }
-.forecast-card__img {
 
-}
 .forecast-card__degrees {
     font-size:  2.2rem;;
 }
@@ -36,7 +33,6 @@
 
 @media screen and (min-width: 768px) {
   /*Tablet*/
-
   .forecast-cards {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 }
