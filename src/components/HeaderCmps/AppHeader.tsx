@@ -7,7 +7,7 @@ const AppHeader = () => {
     <header className="header full-width">
       <div className="header__wrapper full-width_type_wrapper">
         <img className="header__logo" src={appLogo} alt="App logo" />
-        <nav className="header__nav">
+        <nav className="header__nav ">
           <Link to="/">Home</Link>
           <Link to="/favorites">Favorites</Link>
         </nav>

@@ -1,0 +1,40 @@
+.forecast-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 0;
+
+}
+.forecast-header__wrapper {
+  display: flex;
+  gap: 0 15px;
+  align-items: center;
+}
+.forecast-header__img {
+  height: 80px;
+}
+.forecast-header__info-text {
+  display: flex;
+  flex-direction: column;
+  gap: 10px 0;
+  color: #caf7ffe6;
+}
+.forecast-header__info-city {
+}
+.forecast-header__info-details {
+  font-size: 2.2rem;
+  font-weight: 500;
+}
+.forecast-header__favorites {
+  display: flex;
+  align-items: center;
+}
+.forecast-header__favorites-text {
+padding: 0 8px 0 0;
+}
+.heart-icon {
+  transition: color 7.7s ease-in-out;
+}
+.heart-icon.filled {
+  color: red;
+}
+

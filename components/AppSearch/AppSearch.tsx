@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
-
+import './AppSearch.css'
 interface SearchProps {
   onSearch: (city: string) => void;
 }
@@ -19,7 +19,7 @@ const AppSearch: React.FC<SearchProps> = ({ onSearch }) => {
   };
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center' }}>
+    <div className='search' >
       <TextField
         label="City Name"
         variant="outlined"
