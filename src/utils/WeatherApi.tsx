@@ -20,7 +20,11 @@ export const fetchAutocomplete = async (query: string): Promise<string[]> => {
   for (const key of API_KEYS) {
     const result = await makeApiRequest('/locations/v1/cities/autocomplete', { q: query }, key);
     if (result) {
-      return result.map((item: any) => item.LocalizedName); 
+      return result.map((item: any) => {
+      console.log('item:', item)
+      const city = {city:item.LocalizedName , key: item.Key}
+       return city 
+      })
     }
   }
   toast.error("All API requests failed");
@@ -28,3 +32,13 @@ export const fetchAutocomplete = async (query: string): Promise<string[]> => {
 };
 
 
+export const fetchCurrentConditions = async (locationKey: string): Promise<any> => {
+  for (const key of API_KEYS) {
+      const result = await makeApiRequest(`/currentconditions/v1/${locationKey}`, {}, key);
+      if (result) {
+          return result;
+      }
+  }
+  toast.error("All API requests failed");
+  throw new Error('All API requests failed');
+};

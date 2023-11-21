@@ -1,20 +1,17 @@
 import React, { useState, useCallback, useEffect, useRef } from "react";
 import TextField from "@mui/material/TextField";
-import IconButton from "@mui/material/IconButton";
-import SearchIcon from "@mui/icons-material/Search";
 import { fetchAutocomplete } from "../../../utils/WeatherApi";
 import "./AppSearch.css";
 
 interface SearchProps {
-  onSearch: (city: string) => void;
+  onSearch: (selected: { city: string; key: string }) => void;
 }
 
 const AppSearch: React.FC<SearchProps> = ({ onSearch }) => {
   const [city, setCity] = useState("");
-  const [suggestions, setSuggestions] = useState<string[]>([]);
-  const wrapperRef = useRef<HTMLDivElement>(null); // Correctly typed ref
+  const [suggestions, setSuggestions] = useState<any[]>([]);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
-  // Debounce function
   const debounce = (func: (...args: any[]) => void, delay: number) => {
     let timer: any = null;
     return (...args: any[]) => {
@@ -25,25 +22,27 @@ const AppSearch: React.FC<SearchProps> = ({ onSearch }) => {
     };
   };
 
-  // Function to clear suggestions
   const clearSuggestions = () => setSuggestions([]);
 
-  // Detect click outside component
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
+      if (
+        wrapperRef.current &&
+        !wrapperRef.current.contains(event.target as Node)
+      ) {
         clearSuggestions();
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("click", handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("click", handleClickOutside);
     };
   }, [wrapperRef]);
 
   const callAutocomplete = async (query: string) => {
     const data = await fetchAutocomplete(query);
+    console.log("data:", data);
     if (city.length >= 2) {
       setSuggestions(data);
     } else {
@@ -51,10 +50,9 @@ const AppSearch: React.FC<SearchProps> = ({ onSearch }) => {
     }
   };
 
-  const debounceAutocomplete = useCallback(
-    debounce(callAutocomplete, 3000),
-    [city]
-  );
+  const debounceAutocomplete = useCallback(debounce(callAutocomplete, 3000), [
+    city,
+  ]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
@@ -66,14 +64,11 @@ const AppSearch: React.FC<SearchProps> = ({ onSearch }) => {
     }
   };
 
-  const handleSearch = () => {
-    onSearch(city);
-  };
 
-  const handleSuggestionClick = (suggestion: string) => {
-    setCity(suggestion);
+  const handleSuggestionClick = (suggestion: { city: string; key: string }) => {
+    setCity(suggestion.city);
     clearSuggestions();
-    onSearch(suggestion);
+    onSearch(suggestion); 
   };
 
   return (
@@ -95,14 +90,11 @@ const AppSearch: React.FC<SearchProps> = ({ onSearch }) => {
                 className="search__autocomplete-item"
                 onClick={() => handleSuggestionClick(suggestion)}
               >
-                {suggestion}
+                {suggestion.city}
               </li>
             ))}
           </ul>
         )}
-        <IconButton onClick={handleSearch}>
-          <SearchIcon />
-        </IconButton>
       </div>
     </div>
   );
