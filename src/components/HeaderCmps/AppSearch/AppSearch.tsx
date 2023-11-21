@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
-import { fetchAutocomplete } from "../../../utils/WeatherApi"; // Import the API utility
+import { fetchAutocomplete } from "../../../utils/WeatherApi"; 
 import "./AppSearch.css";
 
 interface SearchProps {
@@ -13,7 +13,7 @@ const AppSearch: React.FC<SearchProps> = ({ onSearch }) => {
   const [city, setCity] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
 
-  // Debounce function
+
   const debounce = (func: (...args: any[]) => void, delay: number) => {
     let timer: any = null;
     return (...args: any[]) => {
@@ -31,7 +31,7 @@ const AppSearch: React.FC<SearchProps> = ({ onSearch }) => {
 
   const debounceAutocomplete = useCallback(
     debounce(callAutocomplete, 3000),
-    []
+    [city]
   );
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
