@@ -11,7 +11,7 @@
   
   .search__autocomplete-dropdown {
     position: absolute;
-    background: white;
+    background: #284878;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -31,6 +31,6 @@
   }
   
   .search__autocomplete-item:hover {
-    background-color: #f0f0f0;
+    background-color: #3862a0;
   }
   

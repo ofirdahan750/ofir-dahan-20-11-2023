@@ -24,13 +24,11 @@ const AppSearch: React.FC<SearchProps> = ({ onSearch }) => {
     };
   };
 
-  // API call
   const callAutocomplete = async (query: string) => {
     const data = await fetchAutocomplete(query);
-    setSuggestions(data.slice(0, 5)); // Limit results to 5
+    setSuggestions(data); 
   };
 
-  // Debounced API call
   const debounceAutocomplete = useCallback(
     debounce(callAutocomplete, 3000),
     []
@@ -63,6 +61,7 @@ const AppSearch: React.FC<SearchProps> = ({ onSearch }) => {
           label="City Name"
           variant="outlined"
           value={city}
+          autoComplete="off"
           onChange={handleInputChange}
           fullWidth
         />
