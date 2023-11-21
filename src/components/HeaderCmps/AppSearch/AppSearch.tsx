@@ -1,8 +1,8 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
 import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
-import { fetchAutocomplete } from "../../../utils/WeatherApi"; 
+import { fetchAutocomplete } from "../../../utils/WeatherApi";
 import "./AppSearch.css";
 
 interface SearchProps {
@@ -12,8 +12,9 @@ interface SearchProps {
 const AppSearch: React.FC<SearchProps> = ({ onSearch }) => {
   const [city, setCity] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
+  const wrapperRef = useRef<HTMLDivElement>(null); // Correctly typed ref
 
-
+  // Debounce function
   const debounce = (func: (...args: any[]) => void, delay: number) => {
     let timer: any = null;
     return (...args: any[]) => {
@@ -24,9 +25,30 @@ const AppSearch: React.FC<SearchProps> = ({ onSearch }) => {
     };
   };
 
+  // Function to clear suggestions
+  const clearSuggestions = () => setSuggestions([]);
+
+  // Detect click outside component
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
+        clearSuggestions();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [wrapperRef]);
+
   const callAutocomplete = async (query: string) => {
     const data = await fetchAutocomplete(query);
-    setSuggestions(data); 
+    if (city.length >= 2) {
+      setSuggestions(data);
+    } else {
+      clearSuggestions();
+    }
   };
 
   const debounceAutocomplete = useCallback(
@@ -40,7 +62,7 @@ const AppSearch: React.FC<SearchProps> = ({ onSearch }) => {
     if (inputValue.length >= 2) {
       debounceAutocomplete(inputValue);
     } else {
-      setSuggestions([]);
+      clearSuggestions();
     }
   };
 
@@ -50,12 +72,12 @@ const AppSearch: React.FC<SearchProps> = ({ onSearch }) => {
 
   const handleSuggestionClick = (suggestion: string) => {
     setCity(suggestion);
-    setSuggestions([]);
+    clearSuggestions();
     onSearch(suggestion);
   };
 
   return (
-    <div className="search">
+    <div className="search" ref={wrapperRef}>
       <div className="search__text-wrapper">
         <TextField
           label="City Name"
