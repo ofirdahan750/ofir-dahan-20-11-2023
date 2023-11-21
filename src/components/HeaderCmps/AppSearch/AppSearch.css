@@ -1,0 +1,36 @@
+.search {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .search__text-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 400px; 
+  }
+  
+  .search__autocomplete-dropdown {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 1000;
+    width: 100%; 
+    max-height: 170px;
+    overflow-y: auto;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .search__autocomplete-item {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .search__autocomplete-item:hover {
+    background-color: #f0f0f0;
+  }
+  

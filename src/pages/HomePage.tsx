@@ -1,6 +1,6 @@
-import AppSearch from "../../components/AppSearch/AppSearch";
-import ForecastHeader from "../../components/ForecastHeader/ForecastHeader";
-import ForecastList from "../../components/ForecastList/ForecastList";
+import AppSearch from "../components/HeaderCmps/AppSearch/AppSearch";
+import ForecastHeader from "../components/HeaderCmps/ForecastHeader/ForecastHeader";
+import ForecastList from "../components/HeaderCmps/ForecastList/ForecastList";
 
 const HomePage = () => {
     const handleSearch = (city: string) => {
