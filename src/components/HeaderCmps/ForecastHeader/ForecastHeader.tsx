@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 const ForecastHeader = () => {
   const [filled, setFilled] = useState(false);
+
   const currentConditions = useSelector(
     (state: any) => state.currentConditionsModule.currentConditions
   );
@@ -24,13 +25,13 @@ const ForecastHeader = () => {
           <div className="forecast-header__wrapper">
             <img
               className="forecast-header__img"
-              src={`https://developer.accuweather.com/sites/default/files/${currentConditions.WeatherIcon}-s.png`}
+              src={`https://developer.accuweather.com/sites/default/files/${currentConditions.WeatherIcon > 10 ? currentConditions.WeatherIcon : '0' + currentConditions.WeatherIcon}-s.png`} 
               alt="Weather image"
             />
             <div className="forecast-header__info-text">
               <h3 className="forecast-header__info-city">{selectedCity}</h3>
               <h2 className="forecast-header__info-details">
-                {currentConditions.Temperature.Metric.Value}&deg;
+                {Math.floor(currentConditions.Temperature.Metric.Value)}&deg;
                 {currentConditions.Temperature.Metric.Unit}
               </h2>
             </div>

@@ -6,7 +6,7 @@ import AppSearch from "../components/HeaderCmps/AppSearch/AppSearch";
 import ForecastHeader from "../components/HeaderCmps/ForecastHeader/ForecastHeader";
 import ForecastList from "../components/HeaderCmps/ForecastList/ForecastList";
 
-import { fetchCurrentConditions } from "../utils/WeatherApi"; // Adjust the import path as needed
+import { fetchCurrentConditions } from "../utils/WeatherApi";
 import { setCurrentConditions } from "../store/actions/currentConditionsAction";
 import { setCurrentCity } from "../store/actions/selectedCityAction";
 
@@ -36,7 +36,6 @@ const HomePage = () => {
   }, [searchParams, dispatch]);
 
   const handleSearch = (selected: { city: string; key: string }) => {
-    console.log(`Search for: ${selected.city}, Key: ${selected.key}`);
     navigate(`?key=${selected.key}&cityName=${selected.city}`);
   };
 
