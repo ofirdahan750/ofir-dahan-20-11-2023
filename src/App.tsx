@@ -1,6 +1,7 @@
 import "./App.css";
-import AppHeader from "./components/HeaderCmps/AppHeader.tsx";
-import HomePage from "./pages/HomePage.tsx";
+import AppHeader from "./components/HeaderCmps/AppHeader";
+import HomePage from "./pages/HomePage";
+import NotFoundPage from "./pages/NotFoundPage";
 import { Route, Routes } from "react-router";
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <main className="main">
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
       <footer className="footer">

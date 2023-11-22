@@ -4,7 +4,6 @@ import {
   CitySuggestion,
   LocationData,
   TodayWeatherData,
-  WeeklyWeatherData,
 } from "../interfaces";
 
 const API_KEYS = [

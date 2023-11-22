@@ -4,13 +4,17 @@
 @import url("./fonts/roboto/roboto.css");
 /* Modifier */
 @import url("./modifier/modifier.css");
+/* Animation */
+@import url("./animation/animation.css");
+/* Keyframe */
+@import url("./keyframe/keyframe.css");
+
 * {
   box-sizing: border-box;
-  html {
-    overflow: hidden;
-    height: 100vh;
-  }
-  /* .Page = Body HTML Element */
+}
+html {
+  overflow: hidden;
+  height: 100vh;
 }
 h1,
 h2,
@@ -22,6 +26,7 @@ h6 {
   margin: 0;
 }
 
+/* .Page = Body HTML Element */
 .page {
   background: linear-gradient(0deg, #0f284c, #0f284c), #ffffff;
   font-family: "Roboto", "Inter", Arial, sans-serif;
