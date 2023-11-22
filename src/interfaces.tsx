@@ -56,3 +56,6 @@ export interface LocationData {
     ID: string;
   };
 }
+export interface SearchProps {
+  onSearch: (selected: CitySuggestion) => void;
+}
