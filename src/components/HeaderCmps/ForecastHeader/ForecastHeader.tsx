@@ -70,7 +70,7 @@ const ForecastHeader = () => {
                 <FavoriteBorderIcon className="heart-icon" />
               )}
             </IconButton>
-            Add to Favorites
+            {filled ?  'Remove from Favorites': 'Add to Favorites'}
           </span>
         </div>
       </div>
