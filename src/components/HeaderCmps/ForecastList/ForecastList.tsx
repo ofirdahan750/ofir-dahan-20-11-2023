@@ -6,7 +6,6 @@ const ForecastList = () => {
   const weeklyConditions = useSelector(
     (state: any) => state.weeklyConditionsModule.weeklyConditions
     );
-    console.log('weeklyConditions:', weeklyConditions)
 
   if (weeklyConditions)
     return (
