@@ -40,7 +40,7 @@ export interface WeeklyWeatherData {
 }
 export interface CitySuggestion {
   city: string;
-  key: string;
+  key: string
 }
 
 export interface LocationData {

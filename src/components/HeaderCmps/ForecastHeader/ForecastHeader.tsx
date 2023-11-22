@@ -33,7 +33,7 @@ const ForecastHeader = () => {
               alt="Weather image"
             />
             <div className="forecast-header__info-text">
-              <h3 className="forecast-header__info-city">{selectedCity}</h3>
+              <h3 className="forecast-header__info-city">{selectedCity.city}</h3>
               <h2 className="forecast-header__info-details">
                 {Math.floor(currentConditions.Temperature.Metric.Value)}&deg;
                 {currentConditions.Temperature.Metric.Unit}

@@ -28,7 +28,7 @@ const AppSearch: React.FC<SearchProps> = ({ onSearch }) => {
     };
 
     if (selectedCity) {
-      setCity(selectedCity);
+      setCity(selectedCity.city);
     }
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
@@ -57,7 +57,7 @@ const AppSearch: React.FC<SearchProps> = ({ onSearch }) => {
   };
 
   const handleSuggestionClick = (suggestion: { city: string; key: string }) => {
-    dispatch(setCurrentCity(suggestion.city));
+    dispatch(setCurrentCity(suggestion));
     setSuggestions([]);
     onSearch(suggestion);
   };

@@ -22,7 +22,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchConditions = async () => {
       try {
-        const locationKey = searchParams.get("key");
+        const locationKey = searchParams.get("key") || "";
         const locationCity = searchParams.get("cityName");
 
         if (locationKey) {
@@ -32,7 +32,7 @@ const HomePage = () => {
           dispatch(setWeeklyConditions(forecastData.DailyForecasts));
         }
         if (locationCity) {
-          dispatch(setCurrentCity(locationCity));
+          dispatch(setCurrentCity({ city: locationCity, key: locationKey }));
         }
       } catch (error) {
         console.error("Error fetching current conditions:", error);
