@@ -5,6 +5,7 @@ interface BaseWeatherData {
   HasPrecipitation: boolean;
   MobileLink: string;
   Link: string;
+  Icon: number
 }
 
 // Interface for Temperature Data

@@ -26,7 +26,6 @@ const HomePage = () => {
           const data = await fetchCurrentConditions(locationKey);
           dispatch(setCurrentConditions(data[0]));
           const forecastData = await fetchFiveDayForecast(locationKey);
-          console.log('forecastData:', forecastData)
           dispatch(setWeeklyConditions(forecastData.DailyForecasts))
         }
         if (locationCity) {

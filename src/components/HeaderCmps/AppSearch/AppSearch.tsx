@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCurrentCity } from "../../../store/actions/selectedCityAction";
 import useDebounce from "../../../custom-hooks/useDebounce";
 import { CitySuggestion, SearchProps } from "../../../interfaces";
+import { setRandomKey } from "../../../utils/utils";
 
 const AppSearch: React.FC<SearchProps> = ({ onSearch }) => {
   const [city, setCity] = useState("");
@@ -76,9 +77,9 @@ const AppSearch: React.FC<SearchProps> = ({ onSearch }) => {
         />
         {suggestions.length > 0 && (
           <ul className="search__autocomplete-dropdown">
-            {suggestions.map((suggestion, index) => (
+            {suggestions.map((suggestion:CitySuggestion, index:number) => (
               <li
-                key={index}
+                key={setRandomKey(index+1)}
                 className="search__autocomplete-item"
                 onClick={() => handleSuggestionClick(suggestion)}
               >
