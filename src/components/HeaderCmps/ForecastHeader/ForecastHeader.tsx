@@ -18,7 +18,6 @@ const ForecastHeader = () => {
   );
 
   useEffect(() => {
-    // Check if the city is in favorites when component mounts
     const favorites = getLocalStorageItem('favorites') || [];
     setFilled(favorites.includes(selectedCity.city));
   }, [selectedCity.city, getLocalStorageItem]);
@@ -26,11 +25,9 @@ const ForecastHeader = () => {
   const toggleHeart = () => {
     const favorites = getLocalStorageItem('favorites') || [];
     if (filled) {
-      // Remove from favorites
       const updatedFavorites = favorites.filter((city: any) => city !== selectedCity.city);
       setLocalStorageItem('favorites', updatedFavorites);
     } else {
-      // Add to favorites
       setLocalStorageItem('favorites', [...favorites, selectedCity.city]);
     }
     setFilled(!filled);
