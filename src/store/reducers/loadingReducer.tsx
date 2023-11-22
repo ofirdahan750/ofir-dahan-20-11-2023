@@ -4,7 +4,7 @@ const initialState = { isLoading: false };
 
 export function loadingReducer(
   state = initialState,
-  action: { payLoad: {isLoading : boolean}; type: string }
+  action: { payLoad: { isLoading: boolean }; type: string }
 ) {
   const { payLoad, type } = action;
   switch (type) {

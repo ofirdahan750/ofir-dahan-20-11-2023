@@ -4,7 +4,10 @@ const initialState = {
   selectedCity: "",
 };
 
-export const selectedCityReducer = (state = initialState, action: any) => {
+export const selectedCityReducer = (
+  state = initialState,
+  action: { payload: string; type: string }
+) => {
   switch (action.type) {
     case SET_CITY:
       return {

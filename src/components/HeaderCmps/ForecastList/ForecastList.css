@@ -13,27 +13,26 @@
   border: 0.2px solid rgb(53, 89, 162);
   transition: 0.5s ease-in-out;
   border-radius: 25px;
-  color:rgb(33, 31, 31) ;
-
+  color: rgb(33, 31, 31);
 }
 .forecast-card:hover {
   transform: scale(1.05);
 }
 
 .forecast-card__degrees {
-    font-size:  2.2rem;;
+  font-size: 2.2rem;
 }
-.forecast-card__day{
-    font-size:  1.635rem;
+.forecast-card__day {
+  font-size: 1.635rem;
 }
-.forecast-card__weather-info{
-    font-size:  0.9375rem;
-    margin: 0 0 20px;
+.forecast-card__weather-info {
+  font-size: 0.9375rem;
+  margin: 0 0 20px;
 }
 
 @media screen and (min-width: 768px) {
   /*Tablet*/
   .forecast-cards {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-}
+  }
 }

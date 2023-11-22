@@ -46,9 +46,9 @@
 @media screen and (min-width: 768px) {
   /*Tablet*/
   .forecast-header {
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: unset;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: unset;
   }
   .forecast-header__img {
     height: 80px;

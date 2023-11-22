@@ -5,14 +5,11 @@ import "./AppSearch.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentCity } from "../../../store/actions/selectedCityAction";
 import useDebounce from "../../../custom-hooks/useDebounce";
-
-interface SearchProps {
-  onSearch: (selected: { city: string; key: string }) => void;
-}
+import { CitySuggestion, SearchProps } from "../../../interfaces";
 
 const AppSearch: React.FC<SearchProps> = ({ onSearch }) => {
   const [city, setCity] = useState("");
-  const [suggestions, setSuggestions] = useState<any[]>([]);
+  const [suggestions, setSuggestions] = useState<CitySuggestion[]>([]);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
   const selectedCity = useSelector(
@@ -52,7 +49,7 @@ const AppSearch: React.FC<SearchProps> = ({ onSearch }) => {
     if (/^[a-zA-Z]*$/.test(inputValue)) {
       setCity(inputValue);
       debounceAutocomplete(inputValue);
-      setErrorMessage(""); // Clear error message when input is valid
+      setErrorMessage("");
     } else {
       setErrorMessage("Please enter English letters only."); // Set a user-friendly error message
     }
