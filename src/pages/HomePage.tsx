@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import AppSearch from "../components/HeaderCmps/AppSearch/AppSearch";
 import ForecastHeader from "../components/HeaderCmps/ForecastHeader/ForecastHeader";
@@ -18,7 +18,9 @@ const HomePage = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
-
+  const weeklyConditions = useSelector(
+    (state: any) => state.weeklyConditionsModule.weeklyConditions
+  );
   useEffect(() => {
     const fetchConditions = async () => {
       try {
@@ -30,6 +32,7 @@ const HomePage = () => {
           dispatch(setCurrentConditions(data[0]));
           const forecastData = await fetchFiveDayForecast(locationKey);
           dispatch(setWeeklyConditions(forecastData.DailyForecasts));
+          
         }
         if (locationCity) {
           dispatch(setCurrentCity({ city: locationCity, key: locationKey }));
@@ -49,7 +52,7 @@ const HomePage = () => {
     <>
       <AppSearch onSearch={handleSearch} />
       <ForecastHeader />
-      <ForecastList />
+      <ForecastList weeklyConditions = {weeklyConditions}/>
     </>
   );
 };

@@ -1,13 +1,8 @@
-import { useSelector } from "react-redux";
-import { WeeklyWeatherData } from "../../../interfaces";
+import { ForecastListProps, WeeklyWeatherData } from "../../../interfaces";
 import { getDayOfWeek, setRandomKey } from "../../../utils/utils";
 import "./ForecastList.css";
 
-const ForecastList = () => {
-  const weeklyConditions = useSelector(
-    (state: any) => state.weeklyConditionsModule.weeklyConditions
-  );
-
+const ForecastList: React.FC<ForecastListProps> = ({ weeklyConditions }) => {
   if (!weeklyConditions) {
     return <div className="empty-state">No forecast data available.</div>;
   }
@@ -22,7 +17,7 @@ const ForecastList = () => {
                   card.Day.Icon >= 10 ? card.Day.Icon : "0" + card.Day.Icon
                 }-s.png`}
                 className="forecast-card__img"
-                alt="forecast card image"
+                alt="Forecast card image"
               />
               <span className="forecast-card__degrees">
                 {(((card.Temperature.Minimum.Value - 32) * 5) / 9).toFixed()}°C

@@ -40,7 +40,7 @@ export interface WeeklyWeatherData {
 }
 export interface CitySuggestion {
   city: string;
-  key: string
+  key: string;
 }
 
 export interface LocationData {
@@ -60,4 +60,7 @@ export interface LocationData {
 
 export interface SearchProps {
   onSearch: (selected: CitySuggestion) => void;
+}
+export interface ForecastListProps {
+  weeklyConditions: WeeklyWeatherData[];
 }

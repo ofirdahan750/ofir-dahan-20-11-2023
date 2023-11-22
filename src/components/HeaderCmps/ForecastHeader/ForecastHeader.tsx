@@ -5,6 +5,7 @@ import "./ForecastHeader.css";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useLocalStorage } from '../../../custom-hooks/useLocalStorage'; // Make sure to create this custom hook
+import { CitySuggestion } from "../../../interfaces";
 
 const ForecastHeader = () => {
   const [filled, setFilled] = useState(false);
@@ -19,19 +20,22 @@ const ForecastHeader = () => {
 
   useEffect(() => {
     const favorites = getLocalStorageItem('favorites') || [];
-    setFilled(favorites.includes(selectedCity.city));
-  }, [selectedCity.city, getLocalStorageItem]);
-
+    setFilled(favorites.some((city: CitySuggestion) => city.key === selectedCity.key));
+  }, [selectedCity.key, getLocalStorageItem]);
+  
   const toggleHeart = () => {
     const favorites = getLocalStorageItem('favorites') || [];
+    const cityObject = { city: selectedCity.city, key: selectedCity.key };
+  
     if (filled) {
-      const updatedFavorites = favorites.filter((city: any) => city !== selectedCity.city);
+      const updatedFavorites = favorites.filter((city: CitySuggestion) => city.key !== selectedCity.key);
       setLocalStorageItem('favorites', updatedFavorites);
     } else {
-      setLocalStorageItem('favorites', [...favorites, selectedCity.city]);
+      setLocalStorageItem('favorites', [...favorites, cityObject]);
     }
     setFilled(!filled);
   };
+  
 
   return (
     <section className="forecast-header">

@@ -2,6 +2,7 @@ import "./App.css";
 import AppHeader from "./components/HeaderCmps/AppHeader";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
+import FavoritesPage from "./pages/FavoritesPage";
 import { Route, Routes } from "react-router";
 function App() {
   return (
@@ -10,6 +11,10 @@ function App() {
       <main className="main">
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route
+              path="/favorites"
+              element={<FavoritesPage />}
+            />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>

@@ -1,4 +1,3 @@
-// useDebounce.ts
 import { useRef, useCallback } from "react";
 
 const useDebounce = <F extends (...args: any[]) => any>(
