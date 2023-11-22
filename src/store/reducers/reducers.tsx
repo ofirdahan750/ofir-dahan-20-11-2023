@@ -8,5 +8,5 @@ export const rootReducer = combineReducers({
   loadingModule: loadingReducer,
   selectedCityModule: selectedCityReducer,
   currentConditionsModule: currentConditionsReducer,
-  weeklyConditionsModule:  weeklyConditionsReducer,
+  weeklyConditionsModule: weeklyConditionsReducer,
 });

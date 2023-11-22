@@ -8,7 +8,7 @@ function App() {
       <AppHeader />
       <main className="main">
         <Routes>
-          <Route path="/" element={<HomePage />} /> 
+          <Route path="/" element={<HomePage />} />
         </Routes>
       </main>
       <footer className="footer">

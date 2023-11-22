@@ -77,9 +77,9 @@ const AppSearch: React.FC<SearchProps> = ({ onSearch }) => {
         />
         {suggestions.length > 0 && (
           <ul className="search__autocomplete-dropdown">
-            {suggestions.map((suggestion:CitySuggestion, index:number) => (
+            {suggestions.map((suggestion: CitySuggestion, index: number) => (
               <li
-                key={setRandomKey(index+1)}
+                key={setRandomKey(index + 1)}
                 className="search__autocomplete-item"
                 onClick={() => handleSuggestionClick(suggestion)}
               >

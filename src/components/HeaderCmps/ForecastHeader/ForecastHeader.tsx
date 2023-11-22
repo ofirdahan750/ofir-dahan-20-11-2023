@@ -25,7 +25,11 @@ const ForecastHeader = () => {
           <div className="forecast-header__wrapper">
             <img
               className="forecast-header__img"
-              src={`https://developer.accuweather.com/sites/default/files/${currentConditions.WeatherIcon > 10 ? currentConditions.WeatherIcon : '0' + currentConditions.WeatherIcon}-s.png`} 
+              src={`https://developer.accuweather.com/sites/default/files/${
+                currentConditions.WeatherIcon > 10
+                  ? currentConditions.WeatherIcon
+                  : "0" + currentConditions.WeatherIcon
+              }-s.png`}
               alt="Weather image"
             />
             <div className="forecast-header__info-text">

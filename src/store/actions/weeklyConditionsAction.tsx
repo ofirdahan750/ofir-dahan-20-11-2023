@@ -1,9 +1,9 @@
 // reducers/weatherReducer.ts
 
-import {  SET_WEEKLY_CONDITIONS } from "../constants";
+import { WeeklyWeatherData } from "../../interfaces";
+import { SET_WEEKLY_CONDITIONS } from "../constants";
 
-export const setWeeklyConditions = (data: any) => (
-    {
+export const setWeeklyConditions = (data: WeeklyWeatherData) => ({
   type: SET_WEEKLY_CONDITIONS,
   payload: data,
 });

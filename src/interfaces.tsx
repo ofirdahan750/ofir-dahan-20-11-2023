@@ -5,7 +5,7 @@ interface BaseWeatherData {
   HasPrecipitation: boolean;
   MobileLink: string;
   Link: string;
-  Icon: number
+  Icon: number;
 }
 
 // Interface for Temperature Data
@@ -15,7 +15,7 @@ interface TemperatureData {
   UnitType: number;
 }
 
-export interface TodayWeatherData extends Omit<BaseWeatherData, 'Temperature'> {
+export interface TodayWeatherData extends Omit<BaseWeatherData, "Temperature"> {
   LocalObservationDateTime: string;
   EpochTime: number;
   WeatherText: string;
@@ -57,6 +57,7 @@ export interface LocationData {
     ID: string;
   };
 }
+
 export interface SearchProps {
   onSearch: (selected: CitySuggestion) => void;
 }
