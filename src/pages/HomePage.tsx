@@ -6,9 +6,10 @@ import AppSearch from "../components/HeaderCmps/AppSearch/AppSearch";
 import ForecastHeader from "../components/HeaderCmps/ForecastHeader/ForecastHeader";
 import ForecastList from "../components/HeaderCmps/ForecastList/ForecastList";
 
-import { fetchCurrentConditions } from "../utils/WeatherApi";
+import { fetchCurrentConditions, fetchFiveDayForecast } from "../utils/WeatherApi";
 import { setCurrentConditions } from "../store/actions/currentConditionsAction";
 import { setCurrentCity } from "../store/actions/selectedCityAction";
+import { setWeeklyConditions } from "../store/actions/weeklyConditionsAction";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -24,6 +25,9 @@ const HomePage = () => {
         if (locationKey) {
           const data = await fetchCurrentConditions(locationKey);
           dispatch(setCurrentConditions(data[0]));
+          const forecastData = await fetchFiveDayForecast(locationKey);
+          console.log('forecastData:', forecastData)
+          dispatch(setWeeklyConditions(forecastData.DailyForecasts))
         }
         if (locationCity) {
           dispatch(setCurrentCity(locationCity));

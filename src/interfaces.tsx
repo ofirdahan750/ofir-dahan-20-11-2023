@@ -1,7 +1,47 @@
+// Base interface for common weather data
+interface BaseWeatherData {
+  WeatherIcon: number;
+  IconPhrase: string;
+  HasPrecipitation: boolean;
+  MobileLink: string;
+  Link: string;
+}
+
+// Interface for Temperature Data
+interface TemperatureData {
+  Value: number;
+  Unit: string;
+  UnitType: number;
+}
+
+export interface TodayWeatherData extends Omit<BaseWeatherData, 'Temperature'> {
+  LocalObservationDateTime: string;
+  EpochTime: number;
+  WeatherText: string;
+  PrecipitationType: string | null;
+  IsDayTime: boolean;
+  Temperature: {
+    Metric: TemperatureData;
+    Imperial: TemperatureData;
+  };
+}
+
+export interface WeeklyWeatherData {
+  Date: string;
+  EpochDate: number;
+  Temperature: {
+    Minimum: TemperatureData;
+    Maximum: TemperatureData;
+  };
+  Day: BaseWeatherData;
+  Night: BaseWeatherData;
+  Sources: string[];
+}
 export interface CitySuggestion {
   city: string;
   key: string;
 }
+
 export interface LocationData {
   Version: number;
   Key: string;
@@ -15,30 +55,4 @@ export interface LocationData {
   AdministrativeArea: {
     ID: string;
   };
-}
-export interface WeatherData {
-  LocalObservationDateTime: string;
-  EpochTime: number;
-  WeatherText: string;
-  WeatherIcon: number;
-  HasPrecipitation: boolean;
-  PrecipitationType: string | null;
-  IsDayTime: boolean;
-  Temperature: {
-    Metric: {
-      Value: number;
-      Unit: string;
-      UnitType: number;
-    };
-    Imperial: {
-      Value: number;
-      Unit: string;
-      UnitType: number;
-    };
-  };
-  MobileLink: string;
-  Link: string;
-}
-export interface SearchProps {
-  onSearch: (selected: { city: string; key: string }) => void;
 }

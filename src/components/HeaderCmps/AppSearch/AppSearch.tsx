@@ -46,7 +46,7 @@ const AppSearch: React.FC<SearchProps> = ({ onSearch }) => {
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
-    if (/^[a-zA-Z]*$/.test(inputValue)) {
+    if (/^[a-zA-Z\s\-\(\)]*$/.test(inputValue)) {
       setCity(inputValue);
       debounceAutocomplete(inputValue);
       setErrorMessage("");

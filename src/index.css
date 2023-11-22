@@ -6,6 +6,11 @@
 @import url("./modifier/modifier.css");
 * {
   box-sizing: border-box;
+  html {
+    overflow: hidden;
+    height: 100vh;
+  }
+  /* .Page = Body HTML Element */
 }
 h1,
 h2,
@@ -16,11 +21,6 @@ h6 {
   padding: 0;
   margin: 0;
 }
-html {
-  overflow: hidden;
-  height: 100vh;
-}
-/* .Page = Body Element */
 
 .page {
   background: linear-gradient(0deg, #0f284c, #0f284c), #ffffff;
