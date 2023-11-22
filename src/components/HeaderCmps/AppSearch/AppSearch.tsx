@@ -4,7 +4,7 @@ import { fetchAutocomplete } from "../../../utils/WeatherApi";
 import "./AppSearch.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentCity } from "../../../store/actions/selectedCityAction";
-import useDebounce from "../../../custom-hooks/useDebounce"; // Corrected import path
+import useDebounce from "../../../custom-hooks/useDebounce";
 
 interface SearchProps {
   onSearch: (selected: { city: string; key: string }) => void;
@@ -14,12 +14,17 @@ const AppSearch: React.FC<SearchProps> = ({ onSearch }) => {
   const [city, setCity] = useState("");
   const [suggestions, setSuggestions] = useState<any[]>([]);
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const dispatch = useDispatch(); 
-  const selectedCity = useSelector((state: any) => state.selectedCityModule.selectedCity);
-
+  const dispatch = useDispatch();
+  const selectedCity = useSelector(
+    (state: any) => state.selectedCityModule.selectedCity
+  );
+  const [errorMessage, setErrorMessage] = useState("");
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
+      if (
+        wrapperRef.current &&
+        !wrapperRef.current.contains(event.target as Node)
+      ) {
         setSuggestions([]);
       }
     };
@@ -27,7 +32,6 @@ const AppSearch: React.FC<SearchProps> = ({ onSearch }) => {
     if (selectedCity) {
       setCity(selectedCity);
     }
-
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   }, [selectedCity]);
@@ -41,19 +45,23 @@ const AppSearch: React.FC<SearchProps> = ({ onSearch }) => {
     }
   }
 
-  // Debounce hook usage
   const debounceAutocomplete = useDebounce(callAutocomplete, 3000);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
-    setCity(inputValue);
-    debounceAutocomplete(inputValue);
+    if (/^[a-zA-Z]*$/.test(inputValue)) {
+      setCity(inputValue);
+      debounceAutocomplete(inputValue);
+      setErrorMessage(""); // Clear error message when input is valid
+    } else {
+      setErrorMessage("Please enter English letters only."); // Set a user-friendly error message
+    }
   };
 
   const handleSuggestionClick = (suggestion: { city: string; key: string }) => {
     dispatch(setCurrentCity(suggestion.city));
     setSuggestions([]);
-    onSearch(suggestion); 
+    onSearch(suggestion);
   };
 
   return (
@@ -65,6 +73,8 @@ const AppSearch: React.FC<SearchProps> = ({ onSearch }) => {
           value={city}
           autoComplete="off"
           onChange={handleInputChange}
+          error={!!errorMessage}
+          helperText={errorMessage}
           fullWidth
         />
         {suggestions.length > 0 && (
