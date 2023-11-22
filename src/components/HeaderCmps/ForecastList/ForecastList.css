@@ -1,3 +1,7 @@
+.forecast-card__content {
+  display: flex;
+  margin: 18px auto 0;
+}
 .forecast-cards {
   display: grid;
   gap: 1rem;
