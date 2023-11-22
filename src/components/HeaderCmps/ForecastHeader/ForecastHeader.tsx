@@ -2,10 +2,13 @@ import { IconButton } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import "./ForecastHeader.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useLocalStorage } from '../../../custom-hooks/useLocalStorage'; // Make sure to create this custom hook
+
 const ForecastHeader = () => {
   const [filled, setFilled] = useState(false);
+  const { getLocalStorageItem, setLocalStorageItem } = useLocalStorage();
 
   const currentConditions = useSelector(
     (state: any) => state.currentConditionsModule.currentConditions
@@ -14,7 +17,22 @@ const ForecastHeader = () => {
     (state: any) => state.selectedCityModule.selectedCity
   );
 
+  useEffect(() => {
+    // Check if the city is in favorites when component mounts
+    const favorites = getLocalStorageItem('favorites') || [];
+    setFilled(favorites.includes(selectedCity.city));
+  }, [selectedCity.city, getLocalStorageItem]);
+
   const toggleHeart = () => {
+    const favorites = getLocalStorageItem('favorites') || [];
+    if (filled) {
+      // Remove from favorites
+      const updatedFavorites = favorites.filter((city: any) => city !== selectedCity.city);
+      setLocalStorageItem('favorites', updatedFavorites);
+    } else {
+      // Add to favorites
+      setLocalStorageItem('favorites', [...favorites, selectedCity.city]);
+    }
     setFilled(!filled);
   };
 
@@ -62,4 +80,5 @@ const ForecastHeader = () => {
     </section>
   );
 };
+
 export default ForecastHeader;
