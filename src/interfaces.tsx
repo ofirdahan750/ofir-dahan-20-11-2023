@@ -1,29 +1,32 @@
-// Base interface for common weather data
-interface BaseWeatherData {
-  WeatherIcon: number;
-  IconPhrase: string;
-  HasPrecipitation: boolean;
-  MobileLink: string;
-  Link: string;
-  Icon: number;
-}
-
-// Interface for Temperature Data
-interface TemperatureData {
+// Common structures for temperature and weather data
+interface Temperature {
   Value: number;
   Unit: string;
   UnitType: number;
 }
 
-export interface TodayWeatherData extends Omit<BaseWeatherData, "Temperature"> {
+interface WeatherIconData {
+  Icon: number;
+  IconPhrase: string;
+}
+
+// Base interface for common weather data
+interface BaseWeatherData extends WeatherIconData {
+  HasPrecipitation: boolean;
+  MobileLink: string;
+  Link: string;
+}
+
+// Extended interfaces for specific data
+export interface TodayWeatherData extends BaseWeatherData {
   LocalObservationDateTime: string;
   EpochTime: number;
   WeatherText: string;
   PrecipitationType: string | null;
   IsDayTime: boolean;
   Temperature: {
-    Metric: TemperatureData;
-    Imperial: TemperatureData;
+    Metric: Temperature;
+    Imperial: Temperature;
   };
 }
 
@@ -32,13 +35,15 @@ export interface WeeklyWeatherData {
   Date?: string;
   EpochDate: number;
   Temperature: {
-    Minimum: TemperatureData;
-    Maximum: TemperatureData;
+    Minimum: Temperature;
+    Maximum: Temperature;
   };
   Day: BaseWeatherData;
   Night: BaseWeatherData;
   Sources: string[];
+  index?: number;
 }
+
 export interface CitySuggestion {
   city: string;
   key: string;
@@ -62,17 +67,20 @@ export interface LocationData {
 export interface SearchProps {
   onSearch: (selected: CitySuggestion) => void;
 }
+
 export interface ForecastListProps {
   weeklyConditions: WeeklyWeatherData[];
 }
 
 export interface CityCondition {
   cityName: string;
-  Day: {
-    Icon: number;
-    IconPhrase: string;
-  };
+  Day: WeatherIconData;
   Temperature: {
     Minimum: { Value: number };
   };
+}
+
+export interface ForecastCardProps {
+  card: WeeklyWeatherData;
+  index: number;
 }

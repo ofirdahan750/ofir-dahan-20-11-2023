@@ -1,5 +1,5 @@
 import { WeeklyWeatherData } from "../../interfaces";
-import { getDayOfWeek, setRandomKey } from "../../utils/utils";
+import ForecastCard from "../ForecastCard/ForecastCard";
 import "./ForecastList.css";
 
 const ForecastList: React.FC<any> = ({ conditionsList }: any) => {
@@ -10,6 +10,9 @@ const ForecastList: React.FC<any> = ({ conditionsList }: any) => {
     <section className="forecast-list">
       <ul className="forecast-cards list-modifier">
         {conditionsList.map((card: WeeklyWeatherData, index: number) => (
+  <ForecastCard key={index} card={card} index={index} />
+))}
+        {/* {conditionsList.map((card: WeeklyWeatherData, index: number) => (
           <li key={setRandomKey(index + 1)} className="forecast-card">
             <div className="forecast-card__content">
               <img
@@ -37,7 +40,7 @@ const ForecastList: React.FC<any> = ({ conditionsList }: any) => {
               {card.Day.IconPhrase}
             </div>
           </li>
-        ))}
+        ))} */}
       </ul>
     </section>
   );
