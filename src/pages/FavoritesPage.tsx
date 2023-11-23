@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useLocalStorage } from "../custom-hooks/useLocalStorage";
 import { fetchCurrentConditions } from "../utils/WeatherApi";
-import { CityCondition, CitySuggestion } from "../interfaces";
+import { CitySuggestion } from "../interfaces";
 import ForecastList from "../components/ForecastList/ForecastList";
 
 const FavoritesPage: React.FC = () => {
-  const [cityConditions, setCityConditions] = useState<CityCondition[]>([]);
+  const [citysConditions, setCitysConditions] = useState<any[]>([]);
   const { getLocalStorageItem } = useLocalStorage();
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const FavoritesPage: React.FC = () => {
           Minimum: { Value: condition[0].Temperature.Imperial.Value },
         },
       }));
-      setCityConditions(formattedConditions);
+      setCitysConditions(formattedConditions);
     } catch (error) {
       console.error("Failed to fetch weather conditions: ", error);
     }
@@ -43,7 +43,7 @@ const FavoritesPage: React.FC = () => {
 
   return (
     <section>
-      <ForecastList conditionsList={cityConditions} />
+      <ForecastList conditionsList={citysConditions} />
     </section>
   );
 };

@@ -19,6 +19,7 @@ interface BaseWeatherData extends WeatherIconData {
 
 // Extended interfaces for specific data
 export interface TodayWeatherData extends BaseWeatherData {
+  WeatherIcon: string;
   LocalObservationDateTime: string;
   EpochTime: number;
   WeatherText: string;
