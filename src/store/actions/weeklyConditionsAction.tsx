@@ -1,5 +1,3 @@
-// reducers/weatherReducer.ts
-
 import { WeeklyWeatherData } from "../../interfaces";
 import { SET_WEEKLY_CONDITIONS } from "../constants";
 

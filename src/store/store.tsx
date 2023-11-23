@@ -1,5 +1,3 @@
-// store.tsx
-
 import { configureStore } from "@reduxjs/toolkit";
 import { rootReducer } from "./reducers/reducers";
 

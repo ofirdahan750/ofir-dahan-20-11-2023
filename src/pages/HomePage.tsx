@@ -24,18 +24,18 @@ const HomePage = () => {
   useEffect(() => {
     const fetchConditions = async () => {
       try {
-        const locationKey = searchParams.get("key") || "";
-        const locationCity = searchParams.get("cityName");
-
-        if (locationKey) {
-          const data = await fetchCurrentConditions(locationKey);
-          dispatch(setCurrentConditions(data[0]));
-          const forecastData = await fetchFiveDayForecast(locationKey);
-          dispatch(setWeeklyConditions(forecastData.DailyForecasts));
+        let locationKey = searchParams.get("key") || "";
+        let locationCity = searchParams.get("cityName");
+        if (!locationKey || !locationCity) {
+          locationKey = "215854";
+          locationCity = "Tel Aviv";
         }
-        if (locationCity) {
-          dispatch(setCurrentCity({ city: locationCity, key: locationKey }));
-        }
+        
+        dispatch(setCurrentCity({city:locationCity,key:locationKey}))
+        const data = await fetchCurrentConditions(locationKey);
+        dispatch(setCurrentConditions(data[0]));
+        const forecastData = await fetchFiveDayForecast(locationKey);
+        dispatch(setWeeklyConditions(forecastData.DailyForecasts));
       } catch (error) {
         console.error("Error fetching current conditions:", error);
       }

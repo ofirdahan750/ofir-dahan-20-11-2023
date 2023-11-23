@@ -69,7 +69,7 @@ export interface SearchProps {
 }
 
 export interface ForecastListProps {
-  weeklyConditions: WeeklyWeatherData[];
+  conditionsList: WeeklyWeatherData[];
 }
 
 export interface CityCondition {

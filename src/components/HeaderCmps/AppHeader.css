@@ -1,28 +1,42 @@
+/* Existing styles */
+
 .header {
   padding: 20px 0;
   border-bottom: 1px solid black;
   background-color: rgba(70, 106, 158, 0.686);
 }
+
 .header__wrapper {
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
 }
+
 .header__logo {
   width: 150px;
   cursor: pointer;
 }
+
 .header__nav {
   display: flex;
   align-self: center;
-  gap: 0 20px;
+  gap: 0 12px;
 }
 
 .header__nav > * {
   all: unset;
   cursor: pointer;
   font-size: 0.8rem;
+  padding: 7px;
+  border-radius: 27px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+.header__nav > *:hover {
+  background-color: #486391;
+  color: white;
+}
+
 @media screen and (min-width: 435px) {
   .header__logo {
     width: 250px;

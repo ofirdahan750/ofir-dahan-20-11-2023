@@ -1,5 +1,3 @@
-// reducers/weatherReducer.ts
-
 import { CitySuggestion } from "../../interfaces";
 import { SET_CITY } from "../constants";
 
