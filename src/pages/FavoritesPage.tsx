@@ -25,7 +25,6 @@ const FavoritesPage: React.FC = () => {
     );
     const conditions = await Promise.all(conditionsPromises);
     const formattedConditions = conditions.map((condition, index) => {
-      console.log("conditions:", condition[0]);
       return {
         cityName: favorites[index].city,
         Day: {
