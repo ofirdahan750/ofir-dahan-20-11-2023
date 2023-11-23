@@ -25,16 +25,12 @@ const HomePage = () => {
   );
   const isLoading = useSelector((state: any) => state.loadingModule.isLoading);
   useEffect(() => {
-    const fetchConditions = async () => {
+    const fetchWeatherData = async () => {
+      dispatch(setLoading(true));
+      let locationKey = searchParams.get("key") || "215854";
+      let locationCity = searchParams.get("cityName") || "Tel Aviv";
+      dispatch(setCurrentCity({ city: locationCity, key: locationKey }));
       try {
-        dispatch(setLoading(true));
-        let locationKey = searchParams.get("key");
-        let locationCity = searchParams.get("cityName");
-        if (!locationKey || !locationCity) {
-          locationKey = "215854";
-          locationCity = "Tel Aviv";
-        }
-        dispatch(setCurrentCity({ city: locationCity, key: locationKey }));
         const data = await fetchCurrentConditions(locationKey);
         dispatch(setCurrentConditions(data[0]));
         const forecastData = await fetchFiveDayForecast(locationKey);
@@ -43,10 +39,9 @@ const HomePage = () => {
         console.error("Error fetching current conditions:", error);
       } finally {
         dispatch(setLoading(false));
-        console.log("done");
       }
     };
-    fetchConditions();
+    fetchWeatherData();
   }, [searchParams, dispatch]);
 
   const handleSearch = (selected: { city: string; key: string }) => {
@@ -62,7 +57,7 @@ const HomePage = () => {
           <ForecastList conditionsList={weeklyConditions} />
         </>
       ) : (
-       <AppSpinner/>
+        <AppSpinner />
       )}
     </>
   );

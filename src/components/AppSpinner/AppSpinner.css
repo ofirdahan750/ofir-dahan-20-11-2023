@@ -14,7 +14,7 @@
   animation: rotation 2s linear infinite;
   display: flex;
   justify-content: center;
-  margin: 30px auto 0 ;
+  margin: 30px auto 0;
 }
 .loader__span::after {
   content: "";

@@ -54,7 +54,7 @@ const FavoritesPage: React.FC = () => {
       {!isLoading ? (
         <ForecastList conditionsList={citysConditions} />
       ) : (
-        <AppSpinner/>
+        <AppSpinner />
       )}
     </section>
   );

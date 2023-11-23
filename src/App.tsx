@@ -1,9 +1,12 @@
-import "./App.css";
+import { Route, Routes } from "react-router-dom";
 import AppHeader from "./components/HeaderCmps/AppHeader";
 import HomePage from "./pages/HomePage";
-import NotFoundPage from "./pages/NotFoundPage";
 import FavoritesPage from "./pages/FavoritesPage";
-import { Route, Routes } from "react-router";
+import NotFoundPage from "./pages/NotFoundPage";
+import "./App.css";
+
+const CurrentYear = new Date().getFullYear();
+
 function App() {
   return (
     <div className="page__content fade-in">
@@ -17,10 +20,11 @@ function App() {
       </main>
       <footer className="footer">
         <p className="footer__copyright-text">
-          &copy; {new Date().getFullYear()} All Rights Reserved.
+          &copy; {CurrentYear} All Rights Reserved.
         </p>
       </footer>
     </div>
   );
 }
+
 export default App;

@@ -1,9 +1,7 @@
-import React from 'react';
+import React from "react";
 import { ForecastCardProps } from "../../interfaces";
 import { getDayOfWeek, setRandomKey } from "../../utils/utils";
 import "./ForecastCard.css";
-
-
 
 const ForecastCard: React.FC<ForecastCardProps> = ({ card, index }) => {
   return (
@@ -21,18 +19,14 @@ const ForecastCard: React.FC<ForecastCardProps> = ({ card, index }) => {
         </span>
       </div>
       {card.Date && (
-        <div className="forecast-card__day">
-          {getDayOfWeek(card.Date)}
-        </div>
+        <div className="forecast-card__day">{getDayOfWeek(card.Date)}</div>
       )}
       {card.cityName && (
         <div className="forecast-card__day" style={{ fontWeight: 500 }}>
           {card.cityName.toUpperCase()}
         </div>
       )}
-      <div className="forecast-card__weather-info">
-        {card.Day.IconPhrase}
-      </div>
+      <div className="forecast-card__weather-info">{card.Day.IconPhrase}</div>
     </li>
   );
 };

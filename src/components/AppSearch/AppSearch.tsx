@@ -52,7 +52,7 @@ const AppSearch: React.FC<SearchProps> = ({ onSearch }) => {
       debounceAutocomplete(inputValue);
       setErrorMessage("");
     } else {
-      setErrorMessage("Please enter English letters only."); // Set a user-friendly error message
+      setErrorMessage("Please enter English letters only.");
     }
   };
 

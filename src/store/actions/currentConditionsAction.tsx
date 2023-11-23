@@ -1,4 +1,3 @@
-
 import { TodayWeatherData } from "../../interfaces";
 import { SET_CURRENT_CONDITIONS } from "../constants";
 
