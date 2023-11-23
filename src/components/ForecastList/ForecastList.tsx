@@ -1,5 +1,5 @@
-import { ForecastListProps, WeeklyWeatherData } from "../../../interfaces";
-import { getDayOfWeek, setRandomKey } from "../../../utils/utils";
+import { WeeklyWeatherData } from "../../interfaces";
+import { getDayOfWeek, setRandomKey } from "../../utils/utils";
 import "./ForecastList.css";
 
 const ForecastList: React.FC<any> = ({ conditionsList }: any) => {
@@ -29,8 +29,8 @@ const ForecastList: React.FC<any> = ({ conditionsList }: any) => {
               </div>
             )}
             {card.cityName && (
-              <div className="forecast-card__day" style={{fontWeight:500}}>
-               {card.cityName.toUpperCase()}
+              <div className="forecast-card__day" style={{ fontWeight: 500 }}>
+                {card.cityName.toUpperCase()}
               </div>
             )}
             <div className="forecast-card__weather-info">

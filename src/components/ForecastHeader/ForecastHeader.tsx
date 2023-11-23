@@ -4,8 +4,8 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import "./ForecastHeader.css";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useLocalStorage } from '../../../custom-hooks/useLocalStorage'; // Make sure to create this custom hook
-import { CitySuggestion } from "../../../interfaces";
+import { useLocalStorage } from "../../custom-hooks/useLocalStorage"; // Make sure to create this custom hook
+import { CitySuggestion } from "../../interfaces";
 
 const ForecastHeader = () => {
   const [filled, setFilled] = useState(false);
@@ -19,23 +19,26 @@ const ForecastHeader = () => {
   );
 
   useEffect(() => {
-    const favorites = getLocalStorageItem('favorites') || [];
-    setFilled(favorites.some((city: CitySuggestion) => city.key === selectedCity.key));
+    const favorites = getLocalStorageItem("favorites") || [];
+    setFilled(
+      favorites.some((city: CitySuggestion) => city.key === selectedCity.key)
+    );
   }, [selectedCity.key, getLocalStorageItem]);
-  
+
   const toggleHeart = () => {
-    const favorites = getLocalStorageItem('favorites') || [];
+    const favorites = getLocalStorageItem("favorites") || [];
     const cityObject = { city: selectedCity.city, key: selectedCity.key };
-  
+
     if (filled) {
-      const updatedFavorites = favorites.filter((city: CitySuggestion) => city.key !== selectedCity.key);
-      setLocalStorageItem('favorites', updatedFavorites);
+      const updatedFavorites = favorites.filter(
+        (city: CitySuggestion) => city.key !== selectedCity.key
+      );
+      setLocalStorageItem("favorites", updatedFavorites);
     } else {
-      setLocalStorageItem('favorites', [...favorites, cityObject]);
+      setLocalStorageItem("favorites", [...favorites, cityObject]);
     }
     setFilled(!filled);
   };
-  
 
   return (
     <section className="forecast-header">
@@ -52,7 +55,9 @@ const ForecastHeader = () => {
               alt="Weather image"
             />
             <div className="forecast-header__info-text">
-              <h3 className="forecast-header__info-city">{selectedCity.city}</h3>
+              <h3 className="forecast-header__info-city">
+                {selectedCity.city}
+              </h3>
               <h2 className="forecast-header__info-details">
                 {Math.floor(currentConditions.Temperature.Metric.Value)}&deg;
                 {currentConditions.Temperature.Metric.Unit}
@@ -74,7 +79,7 @@ const ForecastHeader = () => {
                 <FavoriteBorderIcon className="heart-icon" />
               )}
             </IconButton>
-            {filled ?  'Remove from Favorites': 'Add to Favorites'}
+            {filled ? "Remove from Favorites" : "Add to Favorites"}
           </span>
         </div>
       </div>

@@ -28,8 +28,8 @@ export interface TodayWeatherData extends Omit<BaseWeatherData, "Temperature"> {
 }
 
 export interface WeeklyWeatherData {
-  cityName: string;
-  Date: string;
+  cityName?: string;
+  Date?: string;
   EpochDate: number;
   Temperature: {
     Minimum: TemperatureData;
@@ -41,7 +41,7 @@ export interface WeeklyWeatherData {
 }
 export interface CitySuggestion {
   city: string;
-  key: string
+  key: string;
 }
 
 export interface LocationData {
@@ -64,4 +64,15 @@ export interface SearchProps {
 }
 export interface ForecastListProps {
   weeklyConditions: WeeklyWeatherData[];
+}
+
+export interface CityCondition {
+  cityName: string;
+  Day: {
+    Icon: number;
+    IconPhrase: string;
+  };
+  Temperature: {
+    Minimum: { Value: number };
+  };
 }

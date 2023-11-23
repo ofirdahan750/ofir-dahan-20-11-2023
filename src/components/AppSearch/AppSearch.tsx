@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import TextField from "@mui/material/TextField";
-import { fetchAutocomplete } from "../../../utils/WeatherApi";
+import { fetchAutocomplete } from "../../utils/WeatherApi";
 import "./AppSearch.css";
 import { useDispatch, useSelector } from "react-redux";
-import { setCurrentCity } from "../../../store/actions/selectedCityAction";
-import useDebounce from "../../../custom-hooks/useDebounce";
-import { CitySuggestion, SearchProps } from "../../../interfaces";
-import { setRandomKey } from "../../../utils/utils";
+import { setCurrentCity } from "../../store/actions/selectedCityAction";
+import useDebounce from "../../custom-hooks/useDebounce";
+import { CitySuggestion, SearchProps } from "../../interfaces";
+import { setRandomKey } from "../../utils/utils";
 
 const AppSearch: React.FC<SearchProps> = ({ onSearch }) => {
   const [city, setCity] = useState("");

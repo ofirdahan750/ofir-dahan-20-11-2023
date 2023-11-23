@@ -1,10 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import {
-  CitySuggestion,
-  LocationData,
-  TodayWeatherData,
-} from "../interfaces";
+import { CitySuggestion, LocationData, TodayWeatherData } from "../interfaces";
 
 const API_KEYS = [
   "D1OpGw3qGszJQfxPExDY08f5KeDy2Ebw",
