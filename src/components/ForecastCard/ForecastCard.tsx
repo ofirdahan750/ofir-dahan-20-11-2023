@@ -1,9 +1,14 @@
 import React from "react";
 import { ForecastCardProps } from "../../interfaces";
-import { getDayOfWeek, setRandomKey } from "../../utils/utils";
+import { setRandomKey } from "../../utils/utils";
 import "./ForecastCard.css";
 
 const ForecastCard: React.FC<ForecastCardProps> = ({ card, index }) => {
+  const getDayOfWeek = (dateStr: string): string => {
+    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const date = new Date(dateStr);
+    return days[date.getDay()];
+  };
   return (
     <li key={setRandomKey(index + 1)} className="forecast-card">
       <div className="forecast-card__content">
