@@ -52,7 +52,7 @@ const HomePage = () => {
     <>
       <AppSearch onSearch={handleSearch} />
       <ForecastHeader />
-      <ForecastList weeklyConditions = {weeklyConditions}/>
+      <ForecastList conditionsList = {weeklyConditions}/>
     </>
   );
 };

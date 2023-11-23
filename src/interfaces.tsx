@@ -28,6 +28,7 @@ export interface TodayWeatherData extends Omit<BaseWeatherData, "Temperature"> {
 }
 
 export interface WeeklyWeatherData {
+  cityName: string;
   Date: string;
   EpochDate: number;
   Temperature: {
@@ -40,7 +41,7 @@ export interface WeeklyWeatherData {
 }
 export interface CitySuggestion {
   city: string;
-  key: string;
+  key: string
 }
 
 export interface LocationData {

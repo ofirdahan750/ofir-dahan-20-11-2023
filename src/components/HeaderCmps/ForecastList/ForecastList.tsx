@@ -2,14 +2,14 @@ import { ForecastListProps, WeeklyWeatherData } from "../../../interfaces";
 import { getDayOfWeek, setRandomKey } from "../../../utils/utils";
 import "./ForecastList.css";
 
-const ForecastList: React.FC<ForecastListProps> = ({ weeklyConditions }) => {
-  if (!weeklyConditions) {
+const ForecastList: React.FC<any> = ({ conditionsList }: any) => {
+  if (!conditionsList) {
     return <div className="empty-state">No forecast data available.</div>;
   }
   return (
     <section className="forecast-list">
       <ul className="forecast-cards list-modifier">
-        {weeklyConditions.map((card: WeeklyWeatherData, index: number) => (
+        {conditionsList.map((card: WeeklyWeatherData, index: number) => (
           <li key={setRandomKey(index + 1)} className="forecast-card">
             <div className="forecast-card__content">
               <img
@@ -23,7 +23,16 @@ const ForecastList: React.FC<ForecastListProps> = ({ weeklyConditions }) => {
                 {(((card.Temperature.Minimum.Value - 32) * 5) / 9).toFixed()}°C
               </span>
             </div>
-            <div className="forecast-card__day">{getDayOfWeek(card.Date)}</div>
+            {card.Date && (
+              <div className="forecast-card__day">
+                {getDayOfWeek(card.Date)}
+              </div>
+            )}
+            {card.cityName && (
+              <div className="forecast-card__day" style={{fontWeight:500}}>
+               {card.cityName.toUpperCase()}
+              </div>
+            )}
             <div className="forecast-card__weather-info">
               {card.Day.IconPhrase}
             </div>
