@@ -13,6 +13,8 @@ import {
 import { setCurrentConditions } from "../store/actions/currentConditionsAction";
 import { setCurrentCity } from "../store/actions/selectedCityAction";
 import { setWeeklyConditions } from "../store/actions/weeklyConditionsAction";
+import { setLoading } from "../store/actions/loadingAction";
+import AppSpinner from "../components/AppSpinner/AppSpinner";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -21,23 +23,27 @@ const HomePage = () => {
   const weeklyConditions = useSelector(
     (state: any) => state.weeklyConditionsModule.weeklyConditions
   );
+  const isLoading = useSelector((state: any) => state.loadingModule.isLoading);
   useEffect(() => {
     const fetchConditions = async () => {
       try {
-        let locationKey = searchParams.get("key") || "";
+        dispatch(setLoading(true));
+        let locationKey = searchParams.get("key");
         let locationCity = searchParams.get("cityName");
         if (!locationKey || !locationCity) {
           locationKey = "215854";
           locationCity = "Tel Aviv";
         }
-        
-        dispatch(setCurrentCity({city:locationCity,key:locationKey}))
+        dispatch(setCurrentCity({ city: locationCity, key: locationKey }));
         const data = await fetchCurrentConditions(locationKey);
         dispatch(setCurrentConditions(data[0]));
         const forecastData = await fetchFiveDayForecast(locationKey);
         dispatch(setWeeklyConditions(forecastData.DailyForecasts));
       } catch (error) {
         console.error("Error fetching current conditions:", error);
+      } finally {
+        dispatch(setLoading(false));
+        console.log("done");
       }
     };
     fetchConditions();
@@ -50,8 +56,14 @@ const HomePage = () => {
   return (
     <>
       <AppSearch onSearch={handleSearch} />
-      <ForecastHeader />
-      <ForecastList conditionsList={weeklyConditions} />
+      {!isLoading ? (
+        <>
+          <ForecastHeader />
+          <ForecastList conditionsList={weeklyConditions} />
+        </>
+      ) : (
+       <AppSpinner/>
+      )}
     </>
   );
 };

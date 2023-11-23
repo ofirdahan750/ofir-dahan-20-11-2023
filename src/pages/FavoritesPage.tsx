@@ -3,10 +3,15 @@ import { useLocalStorage } from "../custom-hooks/useLocalStorage";
 import { fetchCurrentConditions } from "../utils/WeatherApi";
 import { CitySuggestion } from "../interfaces";
 import ForecastList from "../components/ForecastList/ForecastList";
+import { setLoading } from "../store/actions/loadingAction";
+import { useDispatch, useSelector } from "react-redux";
+import AppSpinner from "../components/AppSpinner/AppSpinner";
 
 const FavoritesPage: React.FC = () => {
   const [citysConditions, setCitysConditions] = useState<any[]>([]);
   const { getLocalStorageItem } = useLocalStorage();
+  const dispatch = useDispatch();
+  const isLoading = useSelector((state: any) => state.loadingModule.isLoading);
 
   useEffect(() => {
     const storedFavorites = getLocalStorageItem(
@@ -21,6 +26,7 @@ const FavoritesPage: React.FC = () => {
     favorites: CitySuggestion[]
   ) => {
     try {
+      dispatch(setLoading(true));
       const conditionsPromises = favorites.map((favorite) =>
         fetchCurrentConditions(favorite.key)
       );
@@ -38,12 +44,18 @@ const FavoritesPage: React.FC = () => {
       setCitysConditions(formattedConditions);
     } catch (error) {
       console.error("Failed to fetch weather conditions: ", error);
+    } finally {
+      dispatch(setLoading(false));
     }
   };
 
   return (
     <section>
-      <ForecastList conditionsList={citysConditions} />
+      {!isLoading ? (
+        <ForecastList conditionsList={citysConditions} />
+      ) : (
+        <AppSpinner/>
+      )}
     </section>
   );
 };
