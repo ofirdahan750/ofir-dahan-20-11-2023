@@ -34,7 +34,7 @@ const HomePage = () => {
         const data = await fetchCurrentConditions(locationKey);
         dispatch(setCurrentConditions(data[0]));
         const forecastData = await fetchFiveDayForecast(locationKey);
-        dispatch(setWeeklyConditions(forecastData.DailyForecasts));
+        dispatch(setWeeklyConditions(forecastData));
       } catch (error) {
         console.error("Error fetching current conditions:", error);
       } finally {
