@@ -20,7 +20,7 @@
 }
 .header_theme_dark {
   background-color: #1a1a1a;
-  border-bottom: 0.2px solid #7f7f7f; 
+  border-bottom: 0.2px solid #7f7f7f;
 }
 
 .header__wrapper {
@@ -33,6 +33,7 @@
 
 .header__logo {
   width: 150px;
+  max-height: 100px;
   cursor: pointer;
 }
 
@@ -127,5 +128,7 @@
 
   .header__nav > * {
     font-size: 1em;
+    width: 100%;
+    text-align: center;
   }
 }

@@ -10,6 +10,7 @@ import {
 } from "@mui/icons-material";
 import "./AppHeader.css";
 import appLogo from "../../images/header/logo/header__logo.png";
+import appLogoDark from "../../images/header/logo/header__logo_theme_dark.png";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleTemperatureMode } from "../../store/actions/temperatureAction";
 import { toggleDarkMode } from "../../store/actions/darkModeAction";
@@ -63,7 +64,11 @@ const AppHeader = () => {
     >
       <div className="header__wrapper full-width_type_wrapper">
         <Link to="/">
-          <img className="header__logo" src={appLogo} alt="App logo" />
+          <img
+            className="header__logo"
+            src={isDarkMode ? appLogoDark : appLogo}
+            alt="App logo"
+          />
         </Link>
 
         <button
