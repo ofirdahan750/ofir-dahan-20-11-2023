@@ -10,7 +10,7 @@
   color: rgb(33, 31, 31);
 }
 .forecast-card_theme_dark {
-  color:#ffffff
+  color: #ffffff;
 }
 .forecast-card__content {
   display: flex;

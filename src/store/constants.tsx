@@ -10,8 +10,8 @@ export const SET_CURRENT_CONDITIONS = "SET_CURRENT_CONDITIONS";
 // Weekly Conditions
 export const SET_WEEKLY_CONDITIONS = "SET_WEEKLY_CONDITIONS";
 
-// Toggle Temprature 
+// Toggle Temprature
 export const TOGGLE_TEMPERATURE_MODE = "TOGGLE_TEMPERATURE_MODE";
 
-// Toggle Dark Mode 
+// Toggle Dark Mode
 export const TOGGLE_DARK_MODE = "TOGGLE_DARK_MODE";

@@ -33,10 +33,6 @@ h6 {
   font-style: normal;
   font-weight: 400;
   color: #000000e2;
-  -webkit-animation-name: animate-center;
-  -webkit-animation-duration: 1s;
-  animation-name: animate-center;
-  animation-duration: 1s;
   font-size: 1rem;
   overflow-x: hidden;
   height: 100vh;

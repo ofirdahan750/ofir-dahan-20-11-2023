@@ -9,8 +9,9 @@ import {
   Settings as SettingsIcon,
 } from "@mui/icons-material";
 import "./AppHeader.css";
-import appLogo from "../../images/header/logo/header__logo.png";
-import appLogoDark from "../../images/header/logo/header__logo_theme_dark.png";
+import appLogo from "../../images/header/logo/header__logo1.png";
+import appLogoDark from "../../images/header/logo/header__logo1.png";
+// import appLogoDark from "../../images/header/logo/header__logo_theme_dark.png";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleTemperatureMode } from "../../store/actions/temperatureAction";
 import { toggleDarkMode } from "../../store/actions/darkModeAction";
