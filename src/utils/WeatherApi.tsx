@@ -1,6 +1,11 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { CitySuggestion, LocationData, TodayWeatherData, WeeklyWeatherData } from "../interfaces";
+import {
+  CitySuggestion,
+  LocationData,
+  TodayWeatherData,
+  WeeklyWeatherData,
+} from "../interfaces";
 
 const API_KEYS = [
   "D1OpGw3qGszJQfxPExDY08f5KeDy2Ebw",
@@ -50,7 +55,12 @@ export const fetchCurrentConditions = async (
   return makeApiRequest(`/currentconditions/v1/${locationKey}`, {});
 };
 
-export const fetchFiveDayForecast = async (locationKey: string) : Promise<WeeklyWeatherData[]> => {
-  const res = await makeApiRequest(`/forecasts/v1/daily/5day/${locationKey}`, {});
-  return res.DailyForecasts
+export const fetchFiveDayForecast = async (
+  locationKey: string
+): Promise<WeeklyWeatherData[]> => {
+  const res = await makeApiRequest(
+    `/forecasts/v1/daily/5day/${locationKey}`,
+    {}
+  );
+  return res.DailyForecasts;
 };

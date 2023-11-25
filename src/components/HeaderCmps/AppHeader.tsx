@@ -58,7 +58,9 @@ const AppHeader = () => {
   };
 
   return (
-    <header className="header full-width">
+    <header
+      className={`header ${isDarkMode && "header_theme_dark"} full-width`}
+    >
       <div className="header__wrapper full-width_type_wrapper">
         <Link to="/">
           <img className="header__logo" src={appLogo} alt="App logo" />
