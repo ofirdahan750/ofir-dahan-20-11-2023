@@ -2,6 +2,7 @@ import React from "react";
 import { ForecastCardProps } from "../../interfaces";
 import { setRandomKey } from "../../utils/utils";
 import "./ForecastCard.css";
+import { useSelector } from "react-redux";
 
 const ForecastCard: React.FC<ForecastCardProps> = ({ card, index }) => {
   const getDayOfWeek = (dateStr: string): string => {
@@ -9,6 +10,10 @@ const ForecastCard: React.FC<ForecastCardProps> = ({ card, index }) => {
     const date = new Date(dateStr);
     return days[date.getDay()];
   };
+  const isFahrenheit = useSelector(
+    (state: any) => state.temperatureModule.isFahrenheit
+  );
+
   return (
     <li key={setRandomKey(index + 1)} className="forecast-card">
       <div className="forecast-card__content">
@@ -20,7 +25,12 @@ const ForecastCard: React.FC<ForecastCardProps> = ({ card, index }) => {
           alt="Forecast card image"
         />
         <span className="forecast-card__degrees">
-          {(((card.Temperature.Minimum.Value - 32) * 5) / 9).toFixed()}°C
+          {isFahrenheit
+            ? `${card.Temperature.Minimum.Value.toFixed()}°F`
+            : `${(
+                ((card.Temperature.Minimum.Value - 32) * 5) /
+                9
+              ).toFixed()}°C`}
         </span>
       </div>
       {card.Date && (
