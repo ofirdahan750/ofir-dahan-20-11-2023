@@ -12,13 +12,19 @@ import "./AppHeader.css";
 import appLogo from "../../images/header/logo/header__logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleTemperatureMode } from "../../store/actions/temperatureAction";
+import { toggleDarkMode } from "../../store/actions/darkModeAction";
 
 const AppHeader = () => {
-  const dispatch = useDispatch()
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const isFahrenheit = useSelector((state: any) => state.temperatureModule.isFahrenheit);
+
+  const isFahrenheit = useSelector(
+    (state: any) => state.temperatureModule.isFahrenheit
+  );
+  const isDarkMode = useSelector(
+    (state: any) => state.darkModeModule.isDarkMode
+  );
 
   const handleResize = () => {
     if (window.innerWidth >= 530) {
@@ -30,13 +36,13 @@ const AppHeader = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []); 
+  }, [isDarkMode, isFahrenheit]);
   const handleTemperatureToggle = () => {
-    dispatch(toggleTemperatureMode());
+    dispatch(toggleTemperatureMode(!isFahrenheit));
   };
 
   const handleModeToggle = () => {
-    setIsDarkMode(!isDarkMode);
+    dispatch(toggleDarkMode(!isDarkMode));
   };
 
   const handleMenuOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -48,7 +54,7 @@ const AppHeader = () => {
   };
 
   const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
+    setMobileMenuOpen((prevState) => !prevState);
   };
 
   return (

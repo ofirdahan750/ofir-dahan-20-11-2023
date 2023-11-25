@@ -6,14 +6,12 @@ const initialState = {
 
 export const temperatureReducer = (
   state = initialState,
-  action: { type: string }
+  action: { payLoad: { isFahrenheit: boolean }; type: string }
 ) => {
-  switch (action.type) {
+  const { payLoad, type } = action;
+  switch (type) {
     case TOGGLE_TEMPERATURE_MODE:
-      return {
-        ...state,
-        isFahrenheit: !state.isFahrenheit,
-      };
+      return { isFahrenheit: payLoad.isFahrenheit };
     default:
       return state;
   }

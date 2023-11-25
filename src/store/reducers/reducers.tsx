@@ -4,6 +4,7 @@ import { currentConditionsReducer } from "./currentConditionsReducer";
 import { selectedCityReducer } from "./selectedCityReducer";
 import { weeklyConditionsReducer } from "./weeklyConditionsReducer";
 import { temperatureReducer } from "./temperatureReducer";
+import { darkModeReducer } from "./darkModeReducer";
 
 export const rootReducer = combineReducers({
   loadingModule: loadingReducer,
@@ -11,4 +12,5 @@ export const rootReducer = combineReducers({
   currentConditionsModule: currentConditionsReducer,
   weeklyConditionsModule: weeklyConditionsReducer,
   temperatureModule: temperatureReducer,
+  darkModeModule: darkModeReducer,
 });

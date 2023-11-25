@@ -62,11 +62,13 @@ const ForecastHeader = () => {
                 {selectedCity.city}
               </h3>
               <h2 className="forecast-header__info-details">
-                {/* {Math.floor(currentConditions.Temperature.Metric.Value)}&deg;
-                {currentConditions.Temperature.Metric.Unit} */}
                 {!isFahrenheit
-                  ? `${(currentConditions.Temperature.Metric.Value).toFixed()}°${currentConditions.Temperature.Metric.Unit}`
-                  : `${(currentConditions.Temperature.Imperial.Value).toFixed()}°${currentConditions.Temperature.Imperial.Unit}`}
+                  ? `${currentConditions.Temperature.Metric.Value.toFixed()}°${
+                      currentConditions.Temperature.Metric.Unit
+                    }`
+                  : `${currentConditions.Temperature.Imperial.Value.toFixed()}°${
+                      currentConditions.Temperature.Imperial.Unit
+                    }`}
               </h2>
             </div>
           </div>
