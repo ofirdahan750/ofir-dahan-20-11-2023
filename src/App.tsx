@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="page__content fade-in">
       <AppHeader />
-      <main className="main">
+      <main className="main fade-in">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/favorites" element={<FavoritesPage />} />

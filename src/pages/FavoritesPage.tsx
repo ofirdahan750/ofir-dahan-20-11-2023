@@ -50,7 +50,7 @@ const FavoritesPage: React.FC = () => {
   };
 
   return (
-    <section>
+    <section className="favorites fade-in">
       {!isLoading ? (
         <ForecastList conditionsList={citysConditions} />
       ) : (

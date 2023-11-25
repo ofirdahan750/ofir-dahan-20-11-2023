@@ -49,7 +49,7 @@ const HomePage = () => {
   };
 
   return (
-    <>
+    <section className="home-page fade-in">
       <AppSearch onSearch={handleSearch} />
       {!isLoading ? (
         <>
@@ -59,8 +59,8 @@ const HomePage = () => {
       ) : (
         <AppSpinner />
       )}
-    </>
-  );
+    </section>
+  )
 };
 
 export default HomePage;
