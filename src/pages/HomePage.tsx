@@ -60,7 +60,7 @@ const HomePage = () => {
         <AppSpinner />
       )}
     </section>
-  )
+  );
 };
 
 export default HomePage;

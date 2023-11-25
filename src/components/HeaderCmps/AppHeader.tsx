@@ -48,11 +48,19 @@ const AppHeader = () => {
           <MenuIcon />
         </button>
 
-        <nav className={`header__nav ${mobileMenuOpen ? "header__nav_open" : ""}`}>
+        <nav
+          className={`header__nav ${
+            mobileMenuOpen ? "header__nav_open slide-in-blurred-right" : ""
+          }`}
+        >
           <Link to="/" className="header__nav-link" onClick={toggleMobileMenu}>
             Home
           </Link>
-          <Link to="/favorites" className="header__nav-link" onClick={toggleMobileMenu}>
+          <Link
+            to="/favorites"
+            className="header__nav-link"
+            onClick={toggleMobileMenu}
+          >
             Favorites
           </Link>
           <div className="header__menu">
