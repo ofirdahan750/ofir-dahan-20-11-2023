@@ -10,29 +10,29 @@ import {
 } from "@mui/icons-material";
 import "./AppHeader.css";
 import appLogo from "../../images/header/logo/header__logo.png";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleTemperatureMode } from "../../store/actions/temperatureAction";
 
 const AppHeader = () => {
-  const [isFahrenheit, setIsFahrenheit] = useState(false);
+  const dispatch = useDispatch()
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const isFahrenheit = useSelector((state: any) => state.temperatureModule.isFahrenheit);
+
   const handleResize = () => {
     if (window.innerWidth >= 530) {
       setMobileMenuOpen(false);
     }
   };
   useEffect(() => {
-    // Add resize listener
     window.addEventListener("resize", handleResize);
-
-    // Cleanup function
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []); // Empty dependency array ensures this runs once on mount and unmount
-
+  }, []); 
   const handleTemperatureToggle = () => {
-    setIsFahrenheit(!isFahrenheit);
+    dispatch(toggleTemperatureMode());
   };
 
   const handleModeToggle = () => {
