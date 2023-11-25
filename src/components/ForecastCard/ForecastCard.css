@@ -22,6 +22,7 @@
 }
 .forecast-card__day {
   font-size: 1.635rem;
+  text-align: center;
 }
 .forecast-card__weather-info {
   font-size: 0.9375rem;

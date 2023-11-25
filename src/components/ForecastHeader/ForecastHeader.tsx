@@ -21,6 +21,9 @@ const ForecastHeader = () => {
     (state: any) => state.temperatureModule.isFahrenheit
   );
 
+  const isDarkMode = useSelector(
+    (state: any) => state.darkModeModule.isDarkMode
+  );
   useEffect(() => {
     const favorites = getLocalStorageItem("favorites") || [];
     setFilled(
@@ -77,9 +80,9 @@ const ForecastHeader = () => {
       <div className="forecast-header__favorites">
         <div
           onClick={toggleHeart}
-          style={{ border: "1px solid", cursor: "pointer" }}
+          className={`forecast-header__favorites-wrapper ${isDarkMode && 'forecast-header__favorites-wrapper_theme_dark'}`}
         >
-          <span className="forecast-header__favorites-text">
+          <span className={`forecast-header__favorites-text ${isDarkMode && 'forecast-header__favorites-text_theme_dark'} `}>
             <IconButton style={{ padding: "5px 5px 8px" }}>
               {filled ? (
                 <FavoriteIcon className="heart-icon filled" />
