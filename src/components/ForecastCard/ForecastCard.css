@@ -9,6 +9,9 @@
   border-radius: 25px;
   color: rgb(33, 31, 31);
 }
+.forecast-card_theme_dark {
+  color:#ffffff
+}
 .forecast-card__content {
   display: flex;
   margin: 18px auto 0;

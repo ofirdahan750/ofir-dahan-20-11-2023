@@ -13,9 +13,14 @@ const ForecastCard: React.FC<ForecastCardProps> = ({ card, index }) => {
   const isFahrenheit = useSelector(
     (state: any) => state.temperatureModule.isFahrenheit
   );
-
+  const isDarkMode = useSelector(
+    (state: any) => state.darkModeModule.isDarkMode
+  );
   return (
-    <li key={setRandomKey(index + 1)} className="forecast-card">
+    <li
+      key={setRandomKey(index + 1)}
+      className={`forecast-card ${isDarkMode && "forecast-card_theme_dark"}`}
+    >
       <div className="forecast-card__content">
         <img
           src={`https://developer.accuweather.com/sites/default/files/${

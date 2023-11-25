@@ -20,7 +20,6 @@ const ForecastHeader = () => {
   const isFahrenheit = useSelector(
     (state: any) => state.temperatureModule.isFahrenheit
   );
-
   const isDarkMode = useSelector(
     (state: any) => state.darkModeModule.isDarkMode
   );
@@ -80,9 +79,15 @@ const ForecastHeader = () => {
       <div className="forecast-header__favorites">
         <div
           onClick={toggleHeart}
-          className={`forecast-header__favorites-wrapper ${isDarkMode && 'forecast-header__favorites-wrapper_theme_dark'}`}
+          className={`forecast-header__favorites-wrapper ${
+            isDarkMode && "forecast-header__favorites-wrapper_theme_dark"
+          }`}
         >
-          <span className={`forecast-header__favorites-text ${isDarkMode && 'forecast-header__favorites-text_theme_dark'} `}>
+          <span
+            className={`forecast-header__favorites-text ${
+              isDarkMode && "forecast-header__favorites-text_theme_dark"
+            } `}
+          >
             <IconButton style={{ padding: "5px 5px 8px" }}>
               {filled ? (
                 <FavoriteIcon className="heart-icon filled" />
