@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Switch from "@mui/material/Switch";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Menu from "@mui/material/Menu";
@@ -16,6 +16,20 @@ const AppHeader = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const handleResize = () => {
+    if (window.innerWidth >= 530) {
+      setMobileMenuOpen(false);
+    }
+  };
+  useEffect(() => {
+    // Add resize listener
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup function
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []); // Empty dependency array ensures this runs once on mount and unmount
 
   const handleTemperatureToggle = () => {
     setIsFahrenheit(!isFahrenheit);
@@ -44,7 +58,12 @@ const AppHeader = () => {
           <img className="header__logo" src={appLogo} alt="App logo" />
         </Link>
 
-        <button className="header__menu-hamburger" onClick={toggleMobileMenu}>
+        <button
+          className="header__menu-hamburger"
+          onClick={() => {
+            toggleMobileMenu();
+          }}
+        >
           <MenuIcon />
         </button>
 
@@ -53,13 +72,21 @@ const AppHeader = () => {
             mobileMenuOpen ? "header__nav_open slide-in-blurred-right" : ""
           }`}
         >
-          <Link to="/" className="header__nav-link" onClick={toggleMobileMenu}>
+          <Link
+            to="/"
+            className="header__nav-link"
+            onClick={() => {
+              if (mobileMenuOpen) toggleMobileMenu();
+            }}
+          >
             Home
           </Link>
           <Link
             to="/favorites"
             className="header__nav-link"
-            onClick={toggleMobileMenu}
+            onClick={() => {
+              if (mobileMenuOpen) toggleMobileMenu();
+            }}
           >
             Favorites
           </Link>
