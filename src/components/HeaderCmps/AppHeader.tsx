@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Switch from "@mui/material/Switch";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Menu from "@mui/material/Menu";
@@ -20,6 +20,7 @@ const AppHeader = () => {
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   const isFahrenheit = useSelector(
     (state: any) => state.temperatureModule.isFahrenheit
@@ -38,7 +39,22 @@ const AppHeader = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [isDarkMode, isFahrenheit]);
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        wrapperRef.current &&
+        !wrapperRef.current.contains(event.target as Node)
+      ) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, [mobileMenuOpen]);
+
   const handleTemperatureToggle = () => {
     dispatch(toggleTemperatureMode(!isFahrenheit));
   };
@@ -63,7 +79,7 @@ const AppHeader = () => {
     <header
       className={`header ${isDarkMode && "header_theme_dark"} full-width`}
     >
-      <div className="header__wrapper full-width_type_wrapper">
+      <div className="header__wrapper full-width_type_wrapper" ref={wrapperRef}>
         <Link to="/">
           <img
             className="header__logo"

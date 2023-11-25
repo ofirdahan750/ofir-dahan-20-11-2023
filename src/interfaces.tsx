@@ -32,7 +32,7 @@ export interface TodayWeatherData extends BaseWeatherData {
 }
 
 export interface WeeklyWeatherData {
-  cityName?: string;
+  city?: CitySuggestion;
   Date?: string;
   EpochDate: number;
   Temperature: {

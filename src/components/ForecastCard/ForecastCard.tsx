@@ -3,23 +3,33 @@ import { ForecastCardProps } from "../../interfaces";
 import { setRandomKey } from "../../utils/utils";
 import "./ForecastCard.css";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 
 const ForecastCard: React.FC<ForecastCardProps> = ({ card, index }) => {
-  const getDayOfWeek = (dateStr: string): string => {
-    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    const date = new Date(dateStr);
-    return days[date.getDay()];
-  };
+  const navigate = useNavigate();
   const isFahrenheit = useSelector(
     (state: any) => state.temperatureModule.isFahrenheit
   );
   const isDarkMode = useSelector(
     (state: any) => state.darkModeModule.isDarkMode
   );
+  const getDayOfWeek = (dateStr: string): string => {
+    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const date = new Date(dateStr);
+    return days[date.getDay()];
+  };
+
+  const navigateToWeekly = () => {
+    if (card.city) {
+      navigate(`/?key=${card.city.key}&cityName=${card.city.city}`);
+    }
+  };
   return (
     <li
       key={setRandomKey(index + 1)}
       className={`forecast-card ${isDarkMode && "forecast-card_theme_dark"}`}
+      onClick={navigateToWeekly}
+      style={card.city && { cursor: "pointer" }}
     >
       <div className="forecast-card__content">
         <img
@@ -41,9 +51,9 @@ const ForecastCard: React.FC<ForecastCardProps> = ({ card, index }) => {
       {card.Date && (
         <div className="forecast-card__day">{getDayOfWeek(card.Date)}</div>
       )}
-      {card.cityName && (
+      {card.city && (
         <div className="forecast-card__day" style={{ fontWeight: 500 }}>
-          {card.cityName.toUpperCase()}
+          {card.city.city.toUpperCase()}
         </div>
       )}
       <div className="forecast-card__weather-info">{card.Day.IconPhrase}</div>

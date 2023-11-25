@@ -126,5 +126,6 @@
     font-size: 1em;
     width: 100%;
     text-align: center;
+    border-radius: 0;
   }
 }

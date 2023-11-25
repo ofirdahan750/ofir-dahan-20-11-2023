@@ -32,7 +32,7 @@ const FavoritesPage: React.FC = () => {
       );
       const conditions = await Promise.all(conditionsPromises);
       const formattedConditions = conditions.map((condition, index) => ({
-        cityName: favorites[index].city,
+        city: favorites[index],
         Day: {
           Icon: condition[0].WeatherIcon,
           IconPhrase: condition[0].WeatherText,
