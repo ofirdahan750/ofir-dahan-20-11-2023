@@ -15,6 +15,7 @@ const API_KEYS = [
   "ISsKew98LvoX2E99WiBeksgSVGkiPA8u",
   "Dv85ppEOg273zVkSltbD0MLYMrV2zr78",
   "MbItC0vekgfHL9PkpEVLi1c9oRx78hIq",
+  "lC3ZZLBJRAHZJOHRG6lAJ4JNX2n36QX7",
 ];
 const BASE_URL = "https://dataservice.accuweather.com";
 
