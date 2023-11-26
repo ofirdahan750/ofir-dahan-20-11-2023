@@ -5,7 +5,7 @@ import "./ForecastHeader.css";
 
 const ForecastHeader = () => {
   const currentConditions: TodayWeatherData = useSelector(
-    (state: any) => state.currentConditionsModule.currentConditions
+    (state: any) => state.weatherConditionsModule.currentConditions
   );
   const selectedCity: CitySuggestion = useSelector(
     (state: any) => state.selectedCityModule.selectedCity

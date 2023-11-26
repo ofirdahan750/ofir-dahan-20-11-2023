@@ -10,19 +10,21 @@ import {
   fetchCurrentConditions,
   fetchFiveDayForecast,
 } from "../utils/WeatherApi";
-import { setCurrentConditions } from "../store/actions/currentConditionsAction";
 import { setCurrentCity } from "../store/actions/selectedCityAction";
-import { setWeeklyConditions } from "../store/actions/weeklyConditionsAction";
 import { setLoading } from "../store/actions/loadingAction";
 import AppSpinner from "../components/AppSpinner/AppSpinner";
 import { WeeklyWeatherData } from "../interfaces";
+import {
+  setCurrentConditions,
+  setWeeklyConditions,
+} from "../store/actions/weatherConditionsAction";
 
 const HomePage = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
   const weeklyConditions: WeeklyWeatherData[] = useSelector(
-    (state: any) => state.weeklyConditionsModule.weeklyConditions
+    (state: any) => state.weatherConditionsModule.weeklyConditions
   );
   const isLoading: boolean = useSelector(
     (state: any) => state.loadingModule.isLoading
