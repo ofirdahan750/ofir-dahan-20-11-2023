@@ -13,8 +13,8 @@ import appLogoDark from "../../images/header/logo/header__logo1.png";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleTemperatureMode } from "../../store/actions/temperatureAction";
 import { toggleDarkMode } from "../../store/actions/darkModeAction";
-import "./AppHeader.css";
 import useOutsideClick from "../../custom-hooks/useOutsideClick";
+import "./AppHeader.css";
 
 const AppHeader = () => {
   const dispatch = useDispatch();

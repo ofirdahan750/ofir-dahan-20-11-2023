@@ -32,7 +32,7 @@ const AppSearch: React.FC<SearchProps> = ({ onSearch }) => {
     }
   }
 
-  const debounceAutocomplete = useDebounce(callAutocomplete, 3000);
+  const debounceAutocomplete = useDebounce(callAutocomplete, 1200);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;

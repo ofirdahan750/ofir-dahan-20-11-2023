@@ -29,7 +29,7 @@ const makeApiRequest = async (
       });
       return response.data;
     } catch (error: any) {
-      console.error(`API request with key ${key} failed:`, error);
+      console.error(`API request with key ${key} failed: ${error}`);
     }
   }
 

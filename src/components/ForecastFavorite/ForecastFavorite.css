@@ -1,0 +1,31 @@
+.forecast-header__favorite {
+  display: flex;
+  align-items: center;
+}
+.forecast-header__favorite-wrapper {
+  border: 1px solid #000000;
+  cursor: pointer;
+}
+.forecast-header__favorite-wrapper_theme_dark {
+  border: 1px solid #b7e0e7;
+}
+.forecast-header__favorite-text {
+  padding: 0 8px 0 0;
+  /*Moblie*/
+  font-size: 1.09rem;
+}
+.forecast-header__favorite-text_theme_dark {
+  color: #b7e0e7;
+}
+.heart-icon_theme_dark {
+  color: #b7e0e7;
+}
+.heart-icon.filled {
+  color: red;
+}
+@media screen and (min-width: 768px) {
+    /*Tablet*/
+    .forecast-header__favorites-text {
+      font-size: 1.3rem;
+    }
+}
