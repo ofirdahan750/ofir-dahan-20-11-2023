@@ -1,42 +1,28 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import TextField from "@mui/material/TextField";
 import { fetchAutocomplete } from "../../utils/WeatherApi";
-import "./AppSearch.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentCity } from "../../store/actions/selectedCityAction";
 import useDebounce from "../../custom-hooks/useDebounce";
 import { CitySuggestion, SearchProps } from "../../interfaces";
 import { setRandomKey } from "../../utils/utils";
+import "./AppSearch.css";
+import useOutsideClick from "../../custom-hooks/useOutsideClick";
 
 const AppSearch: React.FC<SearchProps> = ({ onSearch }) => {
   const [city, setCity] = useState("");
   const [suggestions, setSuggestions] = useState<CitySuggestion[]>([]);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
-  const selectedCity: CitySuggestion = useSelector(
-    (state: any) => state.selectedCityModule.selectedCity
-  );
+
   const isDarkMode: boolean = useSelector(
     (state: any) => state.darkModeModule.isDarkMode
   );
   const [errorMessage, setErrorMessage] = useState("");
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        wrapperRef.current &&
-        !wrapperRef.current.contains(event.target as Node)
-      ) {
-        setSuggestions([]);
-      }
-    };
 
-    if (selectedCity) {
-      setCity(selectedCity.city);
-    }
-    document.addEventListener("click", handleClickOutside);
-    return () => document.removeEventListener("click", handleClickOutside);
-  }, [selectedCity]);
-
+  useOutsideClick(wrapperRef, () => {
+    setSuggestions([]);
+  });
   async function callAutocomplete(query: string) {
     if (query.length >= 2) {
       const data = await fetchAutocomplete(query);

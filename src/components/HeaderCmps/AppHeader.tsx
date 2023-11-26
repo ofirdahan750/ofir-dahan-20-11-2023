@@ -8,13 +8,13 @@ import {
   Menu as MenuIcon,
   Settings as SettingsIcon,
 } from "@mui/icons-material";
-import "./AppHeader.css";
 import appLogo from "../../images/header/logo/header__logo1.png";
 import appLogoDark from "../../images/header/logo/header__logo1.png";
-// import appLogoDark from "../../images/header/logo/header__logo_theme_dark.png";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleTemperatureMode } from "../../store/actions/temperatureAction";
 import { toggleDarkMode } from "../../store/actions/darkModeAction";
+import "./AppHeader.css";
+import useOutsideClick from "../../custom-hooks/useOutsideClick";
 
 const AppHeader = () => {
   const dispatch = useDispatch();
@@ -40,23 +40,11 @@ const AppHeader = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const targetElement = event.target as HTMLElement;
-      if (
-        wrapperRef.current &&
-        !wrapperRef.current.contains(event.target as Node) &&
-        !targetElement.closest(".PrivateSwitchBase-input") &&
-        !targetElement.closest(".MuiTypography-root") &&
-        !targetElement.closest(".MuiList-root")
-      ) {
-        setMobileMenuOpen(false);
-      }
-    };
-    document.addEventListener("click", handleClickOutside);
-    return () => document.removeEventListener("click", handleClickOutside);
-  }, [mobileMenuOpen]);
+  useOutsideClick(wrapperRef, () => {
+    if (mobileMenuOpen) {
+      setMobileMenuOpen(false);
+    }
+  });
 
   const handleTemperatureToggle = () => {
     dispatch(toggleTemperatureMode(!isFahrenheit));
