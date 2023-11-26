@@ -5,8 +5,8 @@ import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import App from "./App";
 import { store } from "./store/store";
-import "./index.css";
 import "react-toastify/dist/ReactToastify.css";
+import "./index.css";
 
 const rootElement = document.getElementById("root");
 if (rootElement) {

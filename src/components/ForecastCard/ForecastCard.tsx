@@ -1,9 +1,9 @@
 import React from "react";
 import { ForecastCardProps } from "../../interfaces";
 import { setRandomKey } from "../../utils/utils";
-import "./ForecastCard.css";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import "./ForecastCard.css";
 
 const ForecastCard: React.FC<ForecastCardProps> = ({ card, index }) => {
   const navigate = useNavigate();

@@ -6,8 +6,8 @@ import { setCurrentCity } from "../../store/actions/selectedCityAction";
 import useDebounce from "../../custom-hooks/useDebounce";
 import { CitySuggestion, SearchProps } from "../../interfaces";
 import { setRandomKey } from "../../utils/utils";
-import "./AppSearch.css";
 import useOutsideClick from "../../custom-hooks/useOutsideClick";
+import "./AppSearch.css";
 
 const AppSearch: React.FC<SearchProps> = ({ onSearch }) => {
   const [city, setCity] = useState("");
