@@ -22,10 +22,10 @@ const AppHeader = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
-  const isFahrenheit = useSelector(
+  const isFahrenheit: boolean = useSelector(
     (state: any) => state.temperatureModule.isFahrenheit
   );
-  const isDarkMode = useSelector(
+  const isDarkMode: boolean = useSelector(
     (state: any) => state.darkModeModule.isDarkMode
   );
 
@@ -43,14 +43,17 @@ const AppHeader = () => {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
+      const targetElement = event.target as HTMLElement;
       if (
         wrapperRef.current &&
-        !wrapperRef.current.contains(event.target as Node)
+        !wrapperRef.current.contains(event.target as Node) &&
+        !targetElement.closest(".PrivateSwitchBase-input") &&
+        !targetElement.closest(".MuiTypography-root") &&
+        !targetElement.closest(".MuiList-root")
       ) {
         setMobileMenuOpen(false);
       }
     };
-
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   }, [mobileMenuOpen]);
@@ -64,7 +67,11 @@ const AppHeader = () => {
   };
 
   const handleMenuOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
+    if (event.currentTarget && document.contains(event.currentTarget)) {
+      setAnchorEl(event.currentTarget);
+    } else {
+      setAnchorEl(null);
+    }
   };
 
   const handleMenuClose = () => {
@@ -78,8 +85,9 @@ const AppHeader = () => {
   return (
     <header
       className={`header ${isDarkMode && "header_theme_dark"} full-width`}
+      ref={wrapperRef}
     >
-      <div className="header__wrapper full-width_type_wrapper" ref={wrapperRef}>
+      <div className="header__wrapper full-width_type_wrapper">
         <Link to="/">
           <img
             className="header__logo"
@@ -99,7 +107,7 @@ const AppHeader = () => {
 
         <nav
           className={`header__nav ${
-            mobileMenuOpen ? "header__nav_open slide-in-blurred-right" : ""
+            mobileMenuOpen && "header__nav_open slide-in-blurred-right"
           }`}
         >
           <Link
@@ -127,38 +135,43 @@ const AppHeader = () => {
             >
               <SettingsIcon />
             </button>
-            <Menu
-              anchorEl={anchorEl}
-              open={Boolean(anchorEl)}
-              onClose={handleMenuClose}
-              MenuListProps={{ onMouseLeave: handleMenuClose }}
-              disableScrollLock={true}
-              PaperProps={{
-                style: {
-                  width: 150,
-                },
-              }}
-            >
-              <MenuItem>
-                <FormControlLabel
-                  control={
-                    <Switch
-                      checked={isFahrenheit}
-                      onChange={handleTemperatureToggle}
-                    />
-                  }
-                  label={isFahrenheit ? "Fahrenheit" : "Celsius"}
-                />
-              </MenuItem>
-              <MenuItem>
-                <FormControlLabel
-                  control={
-                    <Switch checked={isDarkMode} onChange={handleModeToggle} />
-                  }
-                  label={isDarkMode ? "Dark Mode" : "Light Mode"}
-                />
-              </MenuItem>
-            </Menu>
+            <div>
+              <Menu
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={handleMenuClose}
+                MenuListProps={{ onMouseLeave: handleMenuClose }}
+                disableScrollLock={true}
+                PaperProps={{
+                  style: {
+                    width: 150,
+                  },
+                }}
+              >
+                <MenuItem>
+                  <FormControlLabel
+                    control={
+                      <Switch
+                        checked={isFahrenheit}
+                        onChange={handleTemperatureToggle}
+                      />
+                    }
+                    label={isFahrenheit ? "Fahrenheit" : "Celsius"}
+                  />
+                </MenuItem>
+                <MenuItem>
+                  <FormControlLabel
+                    control={
+                      <Switch
+                        checked={isDarkMode}
+                        onChange={handleModeToggle}
+                      />
+                    }
+                    label={isDarkMode ? "Dark Mode" : "Light Mode"}
+                  />
+                </MenuItem>
+              </Menu>
+            </div>
           </div>
         </nav>
       </div>

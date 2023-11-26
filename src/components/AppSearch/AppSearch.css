@@ -23,6 +23,11 @@
   margin: 0;
   padding: 0;
 }
+.search__autocomplete-dropdown_theme_dark {
+  background-color: rgb(44, 42, 42);
+  color: #fff;
+  border: 0.1px solid #ebe4e4;
+}
 
 .search__autocomplete-item {
   padding: 10px;

@@ -13,8 +13,11 @@ const AppSearch: React.FC<SearchProps> = ({ onSearch }) => {
   const [suggestions, setSuggestions] = useState<CitySuggestion[]>([]);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
-  const selectedCity = useSelector(
+  const selectedCity: CitySuggestion = useSelector(
     (state: any) => state.selectedCityModule.selectedCity
+  );
+  const isDarkMode: boolean = useSelector(
+    (state: any) => state.darkModeModule.isDarkMode
   );
   const [errorMessage, setErrorMessage] = useState("");
   useEffect(() => {
@@ -74,9 +77,24 @@ const AppSearch: React.FC<SearchProps> = ({ onSearch }) => {
           error={!!errorMessage}
           helperText={errorMessage}
           fullWidth
+          InputLabelProps={{
+            style: { color: isDarkMode ? "#fff" : "" },
+          }}
+          InputProps={{
+            style: {
+              color: isDarkMode ? "#fff" : "",
+
+              backgroundColor: isDarkMode ? "rgba(255, 255, 255, 0.1)" : "",
+              borderColor: isDarkMode ? "#fff" : "",
+            },
+          }}
         />
         {suggestions.length > 0 && (
-          <ul className="search__autocomplete-dropdown">
+          <ul
+            className={`search__autocomplete-dropdown ${
+              isDarkMode && "search__autocomplete-dropdown_theme_dark"
+            }`}
+          >
             {suggestions.map((suggestion: CitySuggestion, index: number) => (
               <li
                 key={setRandomKey(index + 1)}

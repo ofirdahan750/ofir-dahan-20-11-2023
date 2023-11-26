@@ -1,26 +1,26 @@
 import { IconButton } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import "./ForecastHeader.css";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useLocalStorage } from "../../custom-hooks/useLocalStorage"; // Make sure to create this custom hook
-import { CitySuggestion } from "../../interfaces";
+import { useLocalStorage } from "../../custom-hooks/useLocalStorage";
+import { CitySuggestion, TodayWeatherData } from "../../interfaces";
+import "./ForecastHeader.css";
 
 const ForecastHeader = () => {
   const [filled, setFilled] = useState(false);
   const { getLocalStorageItem, setLocalStorageItem } = useLocalStorage();
 
-  const currentConditions = useSelector(
+  const currentConditions: TodayWeatherData = useSelector(
     (state: any) => state.currentConditionsModule.currentConditions
   );
-  const selectedCity = useSelector(
+  const selectedCity: CitySuggestion = useSelector(
     (state: any) => state.selectedCityModule.selectedCity
   );
-  const isFahrenheit = useSelector(
+  const isFahrenheit: boolean = useSelector(
     (state: any) => state.temperatureModule.isFahrenheit
   );
-  const isDarkMode = useSelector(
+  const isDarkMode: boolean = useSelector(
     (state: any) => state.darkModeModule.isDarkMode
   );
   useEffect(() => {

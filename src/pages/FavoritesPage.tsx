@@ -11,7 +11,9 @@ const FavoritesPage: React.FC = () => {
   const [citysConditions, setCitysConditions] = useState<any[]>([]);
   const { getLocalStorageItem } = useLocalStorage();
   const dispatch = useDispatch();
-  const isLoading = useSelector((state: any) => state.loadingModule.isLoading);
+  const isLoading: boolean = useSelector(
+    (state: any) => state.loadingModule.isLoading
+  );
 
   useEffect(() => {
     const storedFavorites = getLocalStorageItem(

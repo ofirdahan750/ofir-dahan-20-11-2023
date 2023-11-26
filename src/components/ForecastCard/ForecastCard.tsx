@@ -7,10 +7,10 @@ import { useNavigate } from "react-router";
 
 const ForecastCard: React.FC<ForecastCardProps> = ({ card, index }) => {
   const navigate = useNavigate();
-  const isFahrenheit = useSelector(
+  const isFahrenheit: boolean = useSelector(
     (state: any) => state.temperatureModule.isFahrenheit
   );
-  const isDarkMode = useSelector(
+  const isDarkMode: boolean = useSelector(
     (state: any) => state.darkModeModule.isDarkMode
   );
   const getDayOfWeek = (dateStr: string): string => {

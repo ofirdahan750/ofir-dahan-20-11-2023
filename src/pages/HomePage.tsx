@@ -15,15 +15,18 @@ import { setCurrentCity } from "../store/actions/selectedCityAction";
 import { setWeeklyConditions } from "../store/actions/weeklyConditionsAction";
 import { setLoading } from "../store/actions/loadingAction";
 import AppSpinner from "../components/AppSpinner/AppSpinner";
+import { WeeklyWeatherData } from "../interfaces";
 
 const HomePage = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
-  const weeklyConditions = useSelector(
+  const weeklyConditions: WeeklyWeatherData[] = useSelector(
     (state: any) => state.weeklyConditionsModule.weeklyConditions
   );
-  const isLoading = useSelector((state: any) => state.loadingModule.isLoading);
+  const isLoading: boolean = useSelector(
+    (state: any) => state.loadingModule.isLoading
+  );
   useEffect(() => {
     const fetchWeatherData = async () => {
       dispatch(setLoading(true));
