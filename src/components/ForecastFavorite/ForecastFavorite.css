@@ -24,8 +24,8 @@
   color: red;
 }
 @media screen and (min-width: 768px) {
-    /*Tablet*/
-    .forecast-header__favorites-text {
-      font-size: 1.3rem;
-    }
+  /*Tablet*/
+  .forecast-header__favorites-text {
+    font-size: 1.3rem;
+  }
 }

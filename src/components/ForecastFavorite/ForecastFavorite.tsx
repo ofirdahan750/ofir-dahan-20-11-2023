@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { IconButton } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import './ForecastFavorite.css'
+import "./ForecastFavorite.css";
 
 const ForecastFavorite = () => {
   const { getLocalStorageItem, setLocalStorageItem } = useLocalStorage();
