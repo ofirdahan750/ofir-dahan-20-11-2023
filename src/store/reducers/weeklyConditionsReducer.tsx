@@ -1,15 +1,19 @@
+import { WeeklyWeatherData } from "../../interfaces";
 import { SET_WEEKLY_CONDITIONS } from "../constants";
 
 const initialState = {
-  weeklyConditions: null,
+  weeklyConditions: [],
 };
 
-export const weeklyConditionsReducer = (state = initialState, action: any) => {
+export const weeklyConditionsReducer = (
+  state = initialState,
+  action: { payLoad: WeeklyWeatherData[]; type: string }
+) => {
   switch (action.type) {
     case SET_WEEKLY_CONDITIONS:
       return {
         ...state,
-        weeklyConditions: action.payload,
+        weeklyConditions: action.payLoad,
       };
     default:
       return state;

@@ -1,18 +1,19 @@
+import { CitySuggestion } from "../../interfaces";
 import { SET_CITY } from "../constants";
 
 const initialState = {
-  selectedCity: "",
+  selectedCity: { city: "", key: "" },
 };
 
 export const selectedCityReducer = (
   state = initialState,
-  action: { payload: string; type: string }
+  action: { payLoad: CitySuggestion; type: string }
 ) => {
   switch (action.type) {
     case SET_CITY:
       return {
         ...state,
-        selectedCity: action.payload,
+        selectedCity: action.payLoad,
       };
     default:
       return state;

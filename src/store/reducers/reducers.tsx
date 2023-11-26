@@ -8,9 +8,9 @@ import { darkModeReducer } from "./darkModeReducer";
 
 export const rootReducer = combineReducers({
   loadingModule: loadingReducer,
+  darkModeModule: darkModeReducer,
+  temperatureModule: temperatureReducer,
   selectedCityModule: selectedCityReducer,
   currentConditionsModule: currentConditionsReducer,
   weeklyConditionsModule: weeklyConditionsReducer,
-  temperatureModule: temperatureReducer,
-  darkModeModule: darkModeReducer,
 });
